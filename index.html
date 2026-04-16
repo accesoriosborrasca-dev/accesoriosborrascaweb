@@ -3,266 +3,644 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Accesorios Borrasca - Repuestos y accesorios premium para motos">
-    <title>ACCESORIOS BORRASCA</title>
+    <meta name="description" content="Accesorios Borrasca - Repuestos y accesorios premium para motos. Calidad al mejor precio.">
+    <title>Accesorios Borrasca | Repuestos y Accesorios para Motos</title>
+    <!-- Tailwind CSS CDN para diseño responsive y rápido -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Anton para títulos (moderna y premium) -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&amp;display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-
+        @import url('https://fonts.googleapis.com/css2?family=Anton&amp;display=swap');
+        
         :root {
-            --primary-black: #0a0a0a;
-            --logo-purple: #6b1e8a;
-            --logo-pink: #e11d8a;
+            --color-primary: #92185d;
+            --color-accent: #5ce1e6;
+            --color-dark: #000000;
         }
-
+        
         * {
-            transition-property: color, background-color, border-color, transform;
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 180ms;
+            transition-duration: 150ms;
         }
-
+        
         body {
-            font-family: 'Inter', system_ui, sans-serif;
-            background: linear-gradient(to bottom, 
-                rgba(255,255,255,0.95) 0%,
-                rgba(255,255,255,0.98) 30%,
-                #f8f8f8 100%);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        
+        .title-font {
+            font-family: 'Anton', sans-serif;
+        }
+        
+        .body-font {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        
+        /* Fondo general con brillo oscuro para resaltar texto blanco */
+        .bg-general {
+            background-image: url('fondoweb.png');
+            background-size: cover;
+            background-position: center;
             background-attachment: fixed;
-            color: var(--primary-black);
-            min-height: 100vh;
         }
-
-        .heading-font {
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.5px;
+        
+        .overlay-dark {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75));
         }
-
-        .content-section {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.12);
-            border: 4px solid var(--primary-black);
+        
+        /* Banner principal blanco */
+        .banner-white {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-
-        .header-banner {
-            border-bottom: 6px solid var(--primary-black);
-            box-shadow: 0 8px 25px -5px rgb(0 0 0 / 0.15);
+        
+        /* Video banner blanco con ratio 2.35:1 */
+        .video-container {
+            aspect-ratio: 2.35 / 1;
+            background: white;
+            border-radius: 0;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
         }
-
-        .single-line {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        
+        /* Menú lateral deslizante */
+        .side-menu {
+            transform: translateX(-100%);
         }
-
-        .card-product {
-            border: 4px solid var(--primary-black);
-            box-shadow: 6px 6px 0 var(--primary-black);
+        .side-menu.open {
+            transform: translateX(0);
         }
-
-        .card-product:hover {
-            transform: translateY(-6px);
-            box-shadow: 10px 10px 0 var(--primary-black);
+        
+        /* Cortina / Modal deslizable desde arriba */
+        .cortina {
+            animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
-        .glow-button {
+        
+        @keyframes slideDown {
+            0% { transform: translateY(-100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Cards de productos con bordes finos negros y esquinas afiladas */
+        .product-card {
+            border: 1.5px solid #000000;
+            border-radius: 2px;
+        }
+        
+        /* Botones generales: negro cuadrado con texto blanco */
+        .btn-primary {
+            background-color: #000000;
+            color: #ffffff;
+            border-radius: 2px;
+            padding: 12px 24px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Botones especiales de productos: blanco con texto negro */
+        .btn-product {
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #000000;
+            border-radius: 2px;
+            padding: 10px 32px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Icono flotante WhatsApp */
+        .floating-whatsapp {
+            box-shadow: 0 10px 15px -3px rgb(92 225 230);
+        }
+        
+        /* Animaciones suaves */
+        .section-fade {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .nav-link {
             position: relative;
-            overflow: hidden;
         }
-
-        .glow-button:hover {
-            transform: scale(1.03);
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #92185d;
         }
-
-        .text-main {
-            color: #0a0a0a;
+        .nav-link:hover:after {
+            width: 100%;
         }
-
+        
+        /* Responsive y carga rápida: sin imágenes pesadas innecesarias */
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Asegurar simetría y legibilidad en móviles */
         @media (max-width: 640px) {
-            .header-banner h1 {
-                font-size: 1.4rem !important;
+            .title-font {
+                font-size: 1.75rem;
+                line-height: 1.1;
             }
-            .content-section {
-                margin: 0 8px;
-                border-radius: 20px;
+            .banner-text {
+                font-size: 1.35rem;
             }
         }
     </style>
 </head>
-<body class="min-h-screen">
-
-    <!-- HEADER -->
-    <header class="header-banner bg-white sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto px-4">
-            <div class="h-20 flex items-center">
-                <button onclick="toggleSidebar()" class="flex-shrink-0 w-12 h-12 flex items-center justify-center text-4xl text-[var(--primary-black)] active:scale-95">
-                    ☰
-                </button>
-
-                <div class="flex-1 flex justify-center px-3">
-                    <div class="inline-flex items-center gap-x-3 bg-white border-4 border-[var(--primary-black)] px-6 py-3 shadow-inner">
-                        <img src="logoweb.png" alt="Logo" class="h-8 w-auto">
-                        <h1 class="heading-font text-2xl font-bold text-center single-line text-[var(--primary-black)]">
-                            ACCESORIOS BORRASCA
-                        </h1>
-                        <img src="logoweb.png" alt="Logo" class="h-8 w-auto">
-                    </div>
-                </div>
-                <div class="w-12"></div>
-            </div>
+<body class="bg-general text-[#ffffff] overflow-x-hidden">
+    <!-- BARRA SUPERIOR / BANNER PRINCIPAL BLANCO -->
+    <header class="banner-white sticky top-0 z-50 px-4 py-3 flex items-center justify-between border-b border-black/10">
+        <!-- Icono de menú (punta izquierda) -->
+        <button onclick="toggleSideMenu()" 
+                class="w-10 h-10 flex items-center justify-center text-black hover:text-[#92185d] focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        
+        <!-- Título de la marca centrado en un solo renglón -->
+        <div class="flex-1 flex justify-center">
+            <h1 class="title-font text-[#92185d] text-3xl md:text-4xl tracking-[-1px] banner-text text-center whitespace-nowrap">
+                ACCESORIOS BORRASCA
+            </h1>
+        </div>
+        
+        <!-- Logo pequeño al final del banner -->
+        <div class="w-10 h-10 flex-shrink-0">
+            <img src="logoweb.png" alt="Logo Accesorios Borrasca" class="w-full h-full object-contain">
         </div>
     </header>
 
-    <!-- VIDEO PORTADA -->
-    <section class="max-w-screen-2xl mx-auto px-4 pt-6">
-        <div class="w-full overflow-hidden border-4 border-[var(--primary-black)] shadow-2xl">
-            <video id="hero-video" class="w-full h-full object-cover aspect-video" autoplay loop muted playsinline>
-                <source src="videoweb.mp4" type="video/mp4">
-            </video>
-        </div>
-    </section>
+    <!-- CONTENIDO PRINCIPAL (flotante sobre fondo general) -->
+    <main class="relative">
 
-    <!-- SECCIÓN PRESENTACIÓN -->
-    <section class="max-w-screen-2xl mx-auto px-4 py-10">
-        <div class="content-section rounded-3xl p-8 md:p-12 text-center">
-            <h2 class="heading-font text-4xl md:text-5xl font-bold text-main">Todo para tu moto, en un solo lugar</h2>
-            <p class="text-2xl mt-4 text-gray-700">Accesorios y repuestos de calidad al mejor precio</p>
-            <p class="mt-8 text-lg max-w-2xl mx-auto text-gray-800">Dale a tu moto el salto de nivel que se merece con repuestos y accesorios premium.</p>
-        </div>
-    </section>
-
-    <!-- SECCIÓN REPUESTOS -->
-    <section id="seccion-repuestos" class="max-w-screen-2xl mx-auto px-4 py-12">
-        <div class="text-center mb-10">
-            <div class="flex items-center justify-center gap-4">
-                <span class="text-5xl">⚙️</span>
-                <h2 class="heading-font text-4xl font-bold text-main">Repuestos y Accesorios</h2>
+        <!-- SECCIÓN 1: PORTADA DE VIDEO -->
+        <div class="pt-2 pb-6 px-3 md:px-6">
+            <!-- Video banner blanco full width - ratio 2.35:1 -->
+            <div class="video-container mx-auto max-w-screen-2xl overflow-hidden border border-black/10">
+                <video id="hero-video" 
+                       class="w-full h-full object-cover"
+                       autoplay 
+                       loop 
+                       muted 
+                       playsinline
+                       src="videoweb.mp4">
+                    Tu navegador no soporta video.
+                </video>
             </div>
-            <p class="text-xl text-gray-600 mt-3">Mantén tu moto siempre lista y con estilo.</p>
+            
+            <!-- Margen de espacio debajo del video (2/10 del alto del banner) -->
+            <div class="h-6 md:h-8"></div>
+            
+            <!-- Imagen portadauno.png full width -->
+            <div class="mx-auto max-w-screen-2xl mb-8">
+                <img src="portadauno.png" 
+                     alt="Portada Accesorios Borrasca" 
+                     class="w-full rounded-sm shadow-xl">
+            </div>
+            
+            <!-- Texto descriptivo con tipografía Antonio (body-font) -->
+            <div class="max-w-screen-2xl mx-auto px-4 text-center">
+                <p class="body-font text-xl md:text-2xl leading-tight text-white max-w-2xl mx-auto">
+                    Accesorios y repuestos de calidad al mejor precio<br>
+                    Dale a tu moto el salto de nivel que se merece con repuestos y accesorios de calidad.
+                </p>
+            </div>
+            
+            <!-- Margen de espacio -->
+            <div class="h-8"></div>
+            
+            <!-- Imagen portadados.png full width -->
+            <div class="mx-auto max-w-screen-2xl mb-12">
+                <img src="portadados.png" 
+                     alt="Portada Dos" 
+                     class="w-full rounded-sm shadow-xl">
+            </div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div onclick="openCarousel(0)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
-                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <p class="text-center pb-6 font-medium text-lg">Motor & Transmisión</p>
+        <!-- SECCIÓN 2: REPUESTOS Y ACCESORIOS -->
+        <section id="repuestos" class="section-fade scroll-mt-20 bg-white text-black py-8">
+            <!-- Imagen portada de sección: portadados.png full width -->
+            <div class="mx-auto max-w-screen-2xl">
+                <img src="portadados.png" 
+                     alt="Repuestos y Accesorios" 
+                     class="w-full">
             </div>
-            <div onclick="openCarousel(1)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
-                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <p class="text-center pb-6 font-medium text-lg">Estilo & Seguridad</p>
+            
+            <!-- Texto centrado simétrico -->
+            <div class="max-w-screen-2xl mx-auto px-6 py-6 text-center">
+                <h2 class="body-font text-3xl md:text-4xl font-medium tracking-wider text-[#92185d]">
+                    LA MEJOR CALIDAD Y MEJOR PRECIO.
+                </h2>
             </div>
-            <div onclick="openCarousel(2)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
-                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <p class="text-center pb-6 font-medium text-lg">Repuesto Premium</p>
-            </div>
-            <div onclick="openCarousel(3)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
-                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <p class="text-center pb-6 font-medium text-lg">Accesorio Elite</p>
-            </div>
-        </div>
-
-        <div class="flex justify-center mt-12">
-            <button onclick="document.getElementById('seccion-repuestos').scrollIntoView({behavior:'smooth'})"
-                    class="glow-button bg-[var(--primary-black)] text-white font-bold text-lg px-14 py-6 border-4 border-[var(--primary-black)]">
-                ⚙️ VER TODOS LOS PRODUCTOS
-            </button>
-        </div>
-    </section>
-
-    <!-- SECCIÓN PARTICIPAR POR PREMIOS (mantengo estilo diferente como pediste) -->
-    <section class="max-w-screen-2xl mx-auto px-4 py-16 bg-gradient-to-br from-[#6b1e8a] via-purple-900 to-black text-white relative">
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 class="heading-font text-3xl md:text-4xl font-bold mb-6">¡Ganate tu nueva Moto!</h2>
-            <p class="text-lg leading-relaxed mb-8 px-4">
-                Sumate a nuestro grupo de WhatsApp y participá por increíbles premios.<br>
-                Ofertas exclusivas y novedades antes que nadie.
-            </p>
-            <button onclick="openParticiparModal()"
-                    class="glow-button bg-[#10b981] hover:bg-emerald-600 text-white font-bold text-xl px-16 py-6 border-4 border-white w-full max-w-xs mx-auto">
-                🏍️ Cómo Participar
-            </button>
-        </div>
-    </section>
-
-    <!-- QUIÉNES SOMOS -->
-    <section class="max-w-screen-2xl mx-auto px-4 py-16">
-        <div class="content-section rounded-3xl p-8 md:p-12">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="heading-font text-4xl font-bold mb-6 text-main">Simplemente, nos gustan las motos</h2>
-                    <p class="text-lg leading-relaxed text-gray-800">Nos enfocamos en mejorar tu experiencia sobre dos ruedas con productos de calidad y atención pensada para vos.</p>
-                    <p class="text-lg leading-relaxed mt-6 text-gray-800">Somos compañeros y apasionados por las motos, con un mismo objetivo: ayudarte a elegir repuestos y accesorios que hagan rendir y ver mejor tu moto.</p>
-                    <p class="text-lg leading-relaxed mt-6 text-gray-800">En ACCESORIOS BORRASCA te acompañamos en cada compra.</p>
+            
+            <!-- Cuatro productos destacados en fila horizontal de 2 (grid responsive) -->
+            <div class="max-w-screen-2xl mx-auto px-4 grid grid-cols-2 gap-6 md:gap-8">
+                
+                <!-- Producto 1: Motor & Repuestos -->
+                <div class="product-card bg-white overflow-hidden flex flex-col">
+                    <div class="relative">
+                        <img src="fondoweb.png" 
+                             alt="Motor y Repuestos" 
+                             class="w-full aspect-[4/3] object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="title-font text-2xl text-black mb-4">Motor &amp; Repuestos</h3>
+                        <button onclick="openCatalogoModal()" 
+                                class="btn-product w-full py-3 text-base uppercase tracking-widest">
+                            Ver Repuestos
+                        </button>
+                    </div>
                 </div>
-                <div class="flex justify-center">
-                    <img src="fondoweb.png" alt="Quiénes somos" class="max-w-full md:max-w-md w-full border-4 border-[var(--primary-black)] rounded-2xl object-cover">
+                
+                <!-- Producto 2: Estilo & Estética -->
+                <div class="product-card bg-white overflow-hidden flex flex-col">
+                    <div class="relative">
+                        <img src="fondoweb.png" 
+                             alt="Estilo y Estética" 
+                             class="w-full aspect-[4/3] object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="title-font text-2xl text-black mb-4">Estilo &amp; Estética</h3>
+                        <button onclick="openCatalogoModal()" 
+                                class="btn-product w-full py-3 text-base uppercase tracking-widest">
+                            Ver Accesorios
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+            
+            <!-- Imagen portadatres.png full width con margen -->
+            <div class="mt-12 mx-auto max-w-screen-2xl">
+                <img src="portadatres.png" 
+                     alt="Portada Tres" 
+                     class="w-full">
+            </div>
+        </section>
 
-    <!-- SEGUINOS EN REDES -->
-    <section id="seccion-seguinos" class="max-w-screen-2xl mx-auto px-4 py-16">
-        <div class="content-section rounded-3xl p-8 md:p-12 text-center">
-            <h2 class="heading-font text-4xl font-bold text-main mb-4">Sumate a nuestra comunidad</h2>
-            <p class="text-xl text-gray-600">Seguinos en redes para no perderte nuestras ofertas y novedades.</p>
+        <!-- SECCIÓN 3: PARTICIPAR POR PREMIOS -->
+        <section class="section-fade py-8 bg-[#000000]/90">
+            <!-- Imagen portadacuatro.png full width -->
+            <div class="mx-auto max-w-screen-2xl">
+                <img src="portadacuatro.png" 
+                     alt="Participar por premios" 
+                     class="w-full">
+            </div>
+            
+            <div class="max-w-screen-2xl mx-auto px-6 py-8 text-center">
+                <p class="body-font text-2xl md:text-3xl leading-tight text-white">
+                    Obtené ofertas exclusivas y oportunidades de ganar.<br>
+                    ¡Sumate a nuestro grupo de WhatsApp y formá parte de esta oportunidad!<br>
+                    Conocé más de como hacerte parte de la comunidad donde.
+                </p>
+                
+                <!-- Botón Más Información -->
+                <button onclick="openPremiosModal()" 
+                        class="mt-8 btn-primary inline-flex items-center gap-3 text-lg px-10 py-4">
+                    Más Información ⓘ
+                </button>
+            </div>
+        </section>
 
-            <div class="flex justify-center gap-10 mt-12">
-                <a href="https://www.instagram.com/accesorios_borrasca/" target="_blank" class="text-center group">
-                    <div class="w-20 h-20 bg-gradient-to-br from-[#e11d8a] to-[#6b1e8a] rounded-2xl flex items-center justify-center text-white text-6xl mx-auto group-hover:scale-110">📸</div>
-                    <p class="mt-3 font-medium">Instagram</p>
+        <!-- SECCIÓN 4: QUIENES SOMOS -->
+        <section class="section-fade py-8 bg-white text-black">
+            <!-- Imagen portadacinco.png full width -->
+            <div class="mx-auto max-w-screen-2xl">
+                <img src="portadacinco.png" 
+                     alt="Quienes somos" 
+                     class="w-full">
+            </div>
+            
+            <!-- Imagen portadaseis.png full width -->
+            <div class="mx-auto max-w-screen-2xl mt-8">
+                <img src="portadaseis.png" 
+                     alt="Quienes somos 2" 
+                     class="w-full">
+            </div>
+            
+            <!-- Imagen de presentación centrada tipo portada chica ratio 2.35:1 -->
+            <div class="max-w-screen-2xl mx-auto px-4 mt-12">
+                <div class="max-w-3xl mx-auto">
+                    <img src="presentacion.png" 
+                         alt="Presentación del negocio Accesorios Borrasca" 
+                         class="w-full rounded-sm shadow-2xl mx-auto"
+                         style="aspect-ratio: 2.35 / 1; object-fit: cover;">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: SEGUINOS PARA NO PERDERTE NUESTRAS OFERTAS -->
+        <section id="seguinos" class="section-fade py-8 bg-[#000000]/90">
+            <!-- Imagen portadasiete.png full width -->
+            <div class="mx-auto max-w-screen-2xl">
+                <img src="portadasiete.png" 
+                     alt="Seguinos en redes" 
+                     class="w-full">
+            </div>
+            
+            <!-- Botones redes sociales alineados horizontalmente -->
+            <div class="max-w-screen-2xl mx-auto px-6 flex justify-center gap-8 mt-8">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/accesorios_borrasca/" 
+                   target="_blank"
+                   class="flex flex-col items-center group">
+                    <div class="w-16 h-16 rounded-2xl border-2 border-white/80 flex items-center justify-center overflow-hidden group-hover:scale-110">
+                        <img src="instagramweb.png" alt="Instagram" class="w-12 h-12 object-contain">
+                    </div>
+                    <span class="text-sm text-white/90 mt-2 font-medium">Instagram</span>
                 </a>
-                <a href="#" onclick="alert('TikTok próximamente');return false" class="text-center group">
-                    <div class="w-20 h-20 bg-black rounded-2xl flex items-center justify-center text-white text-6xl mx-auto group-hover:scale-110">♬</div>
-                    <p class="mt-3 font-medium">TikTok</p>
+                
+                <!-- TikTok (enlace no proporcionado en la solicitud, se usa placeholder consistente) -->
+                <a href="https://www.tiktok.com/@accesorios_borrasca" 
+                   target="_blank"
+                   class="flex flex-col items-center group">
+                    <div class="w-16 h-16 rounded-2xl border-2 border-white/80 flex items-center justify-center overflow-hidden group-hover:scale-110">
+                        <img src="tiktokweb.png" alt="TikTok" class="w-12 h-12 object-contain">
+                    </div>
+                    <span class="text-sm text-white/90 mt-2 font-medium">TikTok</span>
                 </a>
-                <a href="https://www.facebook.com/roman.borra" target="_blank" class="text-center group">
-                    <div class="w-20 h-20 bg-[#1877f2] rounded-2xl flex items-center justify-center text-white text-6xl mx-auto group-hover:scale-110">f</div>
-                    <p class="mt-3 font-medium">Facebook</p>
+                
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/roman.borra" 
+                   target="_blank"
+                   class="flex flex-col items-center group">
+                    <div class="w-16 h-16 rounded-2xl border-2 border-white/80 flex items-center justify-center overflow-hidden group-hover:scale-110">
+                        <img src="facebookweb.png" alt="Facebook" class="w-12 h-12 object-contain">
+                    </div>
+                    <span class="text-sm text-white/90 mt-2 font-medium">Facebook</span>
                 </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- WHATSAPP FLOTANTE -->
-    <a onclick="contactarWhatsApp()" 
-       class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shadow-2xl border-4 border-white z-[9999] hover:scale-110">
-        💬
+    </main>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP (lateral inferior derecho) -->
+    <a href="https://wa.me/5492395418232?text=Hola!%20Quiero%20hacer%20una%20consulta." 
+       target="_blank"
+       class="floating-whatsapp fixed bottom-8 right-8 z-[9999] flex items-center justify-center w-16 h-16 bg-[#5ce1e6] rounded-full shadow-2xl border-2 border-white hover:scale-110 active:scale-95">
+        <img src="whatsappweb.png" alt="WhatsApp" class="w-10 h-10 object-contain">
     </a>
 
-    <!-- FOOTER -->
-    <footer class="bg-white py-10 border-t-4 border-[var(--primary-black)]">
-        <div class="max-w-screen-2xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 text-sm">
-            <div class="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-3 font-medium">
-                <a onclick="openComoComprar()" class="cursor-pointer hover:underline">Cómo Comprar</a>
-                <a onclick="document.getElementById('seccion-repuestos').scrollIntoView({behavior:'smooth'})" class="cursor-pointer hover:underline">Ir a la tienda</a>
-                <a onclick="contactarWhatsApp()" class="cursor-pointer hover:underline">Contacto</a>
-                <a href="https://www.instagram.com/accesorios_borrasca/" target="_blank" class="cursor-pointer hover:underline">Instagram</a>
-            </div>
+    <!-- MENÚ LATERAL DESLIZABLE -->
+    <div id="sideMenu" 
+         class="side-menu fixed top-0 left-0 h-screen w-80 bg-white text-black shadow-2xl z-[99999] flex flex-col overflow-hidden">
+        
+        <!-- Header del menú -->
+        <div class="px-6 py-5 border-b flex items-center gap-3 bg-white">
+            <img src="logoweb.png" alt="Logo" class="w-8 h-8 object-contain">
+            <h2 class="title-font text-2xl text-[#92185d] whitespace-nowrap">ACCESORIOS BORRASCA</h2>
+        </div>
+        
+        <!-- Opciones del menú -->
+        <nav class="flex-1 px-4 py-6 space-y-1 text-lg font-medium">
+            
+            <!-- Como Comprar -->
+            <button onclick="openComoComprarModal()" 
+                    class="w-full text-left px-6 py-4 hover:bg-[#92185d]/10 rounded-2xl flex items-center justify-between">
+                <span>Como Comprar</span>
+                <span class="text-2xl leading-none text-[#5ce1e6]">→</span>
+            </button>
+            
+            <!-- Ir a la tienda -->
+            <button onclick="goToSection('repuestos'); toggleSideMenu()" 
+                    class="w-full text-left px-6 py-4 hover:bg-[#92185d]/10 rounded-2xl flex items-center justify-between">
+                <span>Ir a la tienda</span>
+                <span class="text-2xl leading-none text-[#5ce1e6]">→</span>
+            </button>
+            
+            <!-- Contacto -->
+            <a href="https://wa.me/5492395418232?text=Hola!%20Quiero%20hacer%20una%20consulta." 
+               target="_blank"
+               onclick="toggleSideMenu()"
+               class="w-full text-left px-6 py-4 hover:bg-[#92185d]/10 rounded-2xl flex items-center justify-between">
+                <span>Contacto</span>
+                <span class="text-2xl leading-none text-[#5ce1e6]">→</span>
+            </a>
+            
+            <!-- Seguinos en redes -->
+            <button onclick="goToSection('seguinos'); toggleSideMenu()" 
+                    class="w-full text-left px-6 py-4 hover:bg-[#92185d]/10 rounded-2xl flex items-center justify-between">
+                <span>Seguinos en redes</span>
+                <span class="text-2xl leading-none text-[#5ce1e6]">→</span>
+            </button>
+        </nav>
+        
+        <!-- Cerrar menú -->
+        <button onclick="toggleSideMenu()" 
+                class="absolute top-5 right-5 w-10 h-10 flex items-center justify-center text-4xl text-black/60 hover:text-black">
+            ×
+        </button>
+    </div>
 
-            <div class="flex items-center gap-3">
-                <img src="logoweb.png" alt="Logo" class="h-8">
-                <span class="heading-font font-bold text-lg">ACCESORIOS BORRASCA</span>
+    <!-- MODAL / CORTINA "COMO COMPRAR" (usado en menú y footer) -->
+    <div id="modalComoComprar" onclick="if(event.target.id === 'modalComoComprar') closeComoComprarModal()" 
+         class="hidden fixed inset-0 bg-black/70 z-[100000] flex items-start justify-center pt-12">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="cortina bg-white text-black w-full max-w-2xl mx-4 rounded-3xl shadow-2xl overflow-hidden">
+            <div class="px-8 pt-8 pb-4 flex justify-between items-center border-b">
+                <h3 class="title-font text-3xl text-[#92185d]">Cómo Comprar</h3>
+                <button onclick="closeComoComprarModal()" class="text-4xl text-black/60 hover:text-black leading-none">×</button>
             </div>
+            
+            <div class="p-8 body-font text-lg space-y-6">
+                <ol class="list-decimal pl-5 space-y-4 text-[#000000]">
+                    <li>Entrá al catálogo de productos.</li>
+                    <li>Elegí el repuesto o accesorio que necesitás.</li>
+                    <li>Hacé clic en el botón <strong>Comprar</strong>.</li>
+                    <li>Realizá el pago de forma segura.</li>
+                    <li>Completá tus datos en el formulario o enviáselos directamente a Román por WhatsApp.</li>
+                    <li>¡Y listo! Nosotros nos encargamos del resto.</li>
+                </ol>
+            </div>
+            
+            <div class="px-8 py-6 border-t flex justify-end">
+                <button onclick="closeComoComprarModal()" 
+                        class="btn-primary px-10 py-3 text-lg">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-            <div class="text-xs text-gray-500">© 2025/2026 – Todos los derechos reservados</div>
+    <!-- MODAL / CORTINA CATÁLOGO (desde botones de productos) -->
+    <div id="modalCatalogo" onclick="if(event.target.id === 'modalCatalogo') closeCatalogoModal()" 
+         class="hidden fixed inset-0 bg-black/70 z-[100000] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="cortina bg-white text-black w-full max-w-md mx-4 rounded-3xl shadow-2xl p-8 text-center">
+            <h3 class="title-font text-4xl text-[#92185d] mb-6">Acá baja el Catálogo</h3>
+            <p class="body-font text-xl mb-8">En breve podrás explorar nuestro catálogo completo de repuestos y accesorios para motos.</p>
+            <button onclick="closeCatalogoModal()" 
+                    class="btn-primary px-12 py-4 text-lg">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- MODAL / CORTINA PREMIOS -->
+    <div id="modalPremios" onclick="if(event.target.id === 'modalPremios') closePremiosModal()" 
+         class="hidden fixed inset-0 bg-black/70 z-[100000] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="cortina bg-white text-black w-full max-w-2xl mx-4 rounded-3xl shadow-2xl overflow-hidden">
+            <div class="px-8 pt-8 pb-4 flex justify-between items-center border-b">
+                <h3 class="title-font text-3xl text-[#92185d]">Participar por premios</h3>
+                <button onclick="closePremiosModal()" class="text-4xl text-black/60 hover:text-black leading-none">×</button>
+            </div>
+            
+            <div class="p-8 body-font text-xl leading-relaxed">
+                Sumándote a nuestro WhatsApp, podés participar por increíbles premios y enterarte antes que nadie de todas las oportunidades.
+            </div>
+            
+            <div class="px-8 py-6 border-t flex justify-end">
+                <a href="https://wa.me/5492395418232?text=Hola!%20Quiero%20sumarme%20al%20grupo%20de%20WhatsApp%20para%20premios." 
+                   target="_blank"
+                   onclick="closePremiosModal()"
+                   class="btn-primary px-10 py-3 text-lg flex items-center gap-2">
+                    Sumarme al grupo
+                    <span class="text-2xl">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER / BANNER BLANCO -->
+    <footer class="banner-white text-black py-8 border-t-2 border-black/10">
+        <div class="max-w-screen-2xl mx-auto px-6">
+            <!-- Opciones rápidas alineadas horizontalmente -->
+            <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm md:text-base font-medium">
+                <button onclick="openComoComprarModal()" class="nav-link">Como Comprar</button>
+                <button onclick="goToSection('repuestos')" class="nav-link">Ir a la tienda</button>
+                <a href="https://wa.me/5492395418232?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" class="nav-link">Contacto</a>
+                <button onclick="goToSection('seguinos')" class="nav-link">Seguinos en redes</button>
+            </div>
+            
+            <!-- Logo pequeño centrado -->
+            <div class="flex justify-center my-6">
+                <img src="logoweb.png" alt="Logo Accesorios Borrasca" class="h-9 object-contain">
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center text-xs text-black/70 body-font">
+                Accesorios Borrasca © 2025/2026 – Todos los derechos reservados.
+            </div>
         </div>
     </footer>
 
-    <!-- MODALES (mantengo los que ya tenías) -->
-    <!-- Sidebar, Carousel, Participar, Cómo Comprar... (puedes copiarlos del código original si no los modificaste) -->
-
     <script>
-        // Tus funciones de JavaScript (toggleSidebar, modales, etc.) van aquí
-        // Si quieres, puedo darte también la versión completa de los scripts.
-
-        function contactarWhatsApp() {
-            window.open('https://wa.me/5492395418232?text=Hola!%20Quiero%20hacer%20una%20consulta.', '_blank')
+        /**
+         * Inicialización de Tailwind y scripts de interactividad
+         * Todo optimizado para carga rápida y responsive mobile-first
+         */
+        function initializeTailwind() {
+            return {
+                config(userConfig = {}) {
+                    return {
+                        configUser: userConfig,
+                        theme: {
+                            extend: {
+                                colors: {
+                                    primary: '#92185d',
+                                    accent: '#5ce1e6'
+                                }
+                            }
+                        }
+                    }
+                },
+                theme: {
+                    extend: {}
+                }
+            }
         }
 
-        window.onload = () => {
+        // Inicializar Tailwind al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeTailwind().config()
+            
+            // Pausar video cuando no está visible (optimización de carga)
             const video = document.getElementById('hero-video')
-            if (video) video.play()
+            if (video) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            video.play()
+                        } else {
+                            video.pause()
+                        }
+                    })
+                }, { threshold: 0.5 })
+                observer.observe(video)
+            }
+            
+            console.log('%c✅ Index.html de Accesorios Borrasca cargado correctamente. Diseño premium, responsive y animaciones suaves activadas.', 'color:#92185d; font-family:Anton; font-size:13px')
+        })
+
+        // Toggle menú lateral
+        function toggleSideMenu() {
+            const menu = document.getElementById('sideMenu')
+            menu.classList.toggle('open')
         }
+
+        // Abrir modal "Cómo Comprar"
+        function openComoComprarModal() {
+            document.getElementById('modalComoComprar').classList.remove('hidden')
+            document.getElementById('modalComoComprar').classList.add('flex')
+        }
+
+        function closeComoComprarModal() {
+            const modal = document.getElementById('modalComoComprar')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+
+        // Abrir modal Catálogo (desde botones de productos)
+        function openCatalogoModal() {
+            document.getElementById('modalCatalogo').classList.remove('hidden')
+            document.getElementById('modalCatalogo').classList.add('flex')
+            // Cerrar menú lateral si estaba abierto
+            const sideMenu = document.getElementById('sideMenu')
+            if (sideMenu.classList.contains('open')) toggleSideMenu()
+        }
+
+        function closeCatalogoModal() {
+            const modal = document.getElementById('modalCatalogo')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+
+        // Abrir modal Premios
+        function openPremiosModal() {
+            document.getElementById('modalPremios').classList.remove('hidden')
+            document.getElementById('modalPremios').classList.add('flex')
+        }
+
+        function closePremiosModal() {
+            const modal = document.getElementById('modalPremios')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+
+        // Scroll suave a secciones
+        function goToSection(sectionId) {
+            const section = document.getElementById(sectionId)
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+        }
+
+        // Soporte para cerrar modales con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modals = document.querySelectorAll('.fixed.inset-0.flex')
+                modals.forEach(modal => {
+                    if (!modal.classList.contains('hidden')) {
+                        modal.classList.add('hidden')
+                        modal.classList.remove('flex')
+                    }
+                })
+                const sideMenu = document.getElementById('sideMenu')
+                if (sideMenu.classList.contains('open')) toggleSideMenu()
+            }
+        })
     </script>
 </body>
 </html>

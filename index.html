@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Accesorios Borrasca - Repuestos y accesorios premium para motos">
-    <title>ACCESORIOS BORRASCA | Repuestos y Accesorios para Motos</title>
+    <title>ACCESORIOS BORRASCA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap');
@@ -27,7 +27,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            line-height: 1.4;
+            background-color: #f8f8f8;
         }
         
         .heading-font {
@@ -36,8 +36,9 @@
         }
 
         .content-float {
-            background: rgba(255, 255, 255, 0.97);
-            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
         }
 
         .header-banner {
@@ -49,7 +50,14 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 100%;
+        }
+
+        .text-glow-dark {
+            text-shadow: 0 2px 8px rgba(255,255,255,0.9);
+        }
+
+        .text-glow-light {
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
         }
 
         .card-product {
@@ -91,48 +99,37 @@
             to { transform: translateX(0); }
         }
 
-        /* Optimización móvil extrema */
         @media (max-width: 640px) {
             .header-banner h1 {
-                font-size: 1.4rem !important;
-                padding: 0 8px;
-            }
-            .section-title {
-                font-size: 1.75rem !important;
-            }
-            .button-text {
-                font-size: 1rem !important;
-                white-space: nowrap;
+                font-size: 1.35rem !important;
             }
         }
     </style>
 </head>
 <body class="min-h-screen text-[var(--primary-black)]">
 
-    <!-- HEADER BANNER - SIMÉTRICO Y PROLIJO EN CELULAR -->
+    <!-- HEADER BANNER -->
     <header class="header-banner bg-white sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto px-4">
             <div class="h-20 flex items-center">
-                
-                <!-- Menú hamburguesa a la izquierda -->
+                <!-- Menú izquierda -->
                 <button onclick="toggleSidebar()" 
                         class="flex-shrink-0 w-12 h-12 flex items-center justify-center text-4xl text-[var(--primary-black)] active:scale-95">
                     ☰
                 </button>
 
-                <!-- Banner blanco con logos a los lados y título centrado -->
-                <div class="flex-1 flex justify-center px-2">
+                <!-- Banner central -->
+                <div class="flex-1 flex justify-center px-3">
                     <div class="inline-flex items-center gap-x-3 bg-white border-4 border-[var(--primary-black)] px-6 py-3 shadow-inner">
-                        <img src="logoweb.png" alt="Logo" class="h-8 w-auto flex-shrink-0">
-                        <h1 class="heading-font text-2xl font-bold text-center single-line logo-text">
+                        <img src="logoweb.png" alt="Logo" class="h-8 w-auto">
+                        <h1 class="heading-font text-2xl font-bold text-center single-line text-[var(--primary-black)]">
                             ACCESORIOS BORRASCA
                         </h1>
-                        <img src="logoweb.png" alt="Logo" class="h-8 w-auto flex-shrink-0">
+                        <img src="logoweb.png" alt="Logo" class="h-8 w-auto">
                     </div>
                 </div>
 
-                <!-- Espacio derecho para simetría -->
-                <div class="w-12 flex-shrink-0"></div>
+                <div class="w-12"></div>
             </div>
         </div>
     </header>
@@ -140,24 +137,20 @@
     <!-- SIDEBAR -->
     <div id="sidebar" class="sidebar fixed inset-y-0 left-0 z-[100] w-80 bg-white shadow-2xl -translate-x-full flex flex-col">
         <div class="p-6 border-b flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <img src="logoweb.png" alt="Logo" class="h-10">
-                <span class="heading-font text-3xl font-bold text-[var(--logo-purple)]">BORRÄSCA</span>
-            </div>
+            <span class="heading-font text-2xl font-bold text-[var(--logo-purple)]">ACCESORIOS BORRASCA</span>
             <button onclick="toggleSidebar()" class="text-4xl">×</button>
         </div>
-        <nav class="flex-1 px-6 py-8 space-y-2 text-lg">
+        <nav class="flex-1 px-6 py-8 space-y-2 text-lg font-medium">
             <a onclick="openComoComprar();toggleSidebar()" class="block px-6 py-5 hover:bg-gray-100">🛒 Cómo Comprar</a>
             <a onclick="document.getElementById('seccion-repuestos').scrollIntoView({behavior:'smooth'});toggleSidebar()" class="block px-6 py-5 hover:bg-gray-100">⚙️ Ir a la tienda</a>
             <a onclick="contactarWhatsApp();toggleSidebar()" class="block px-6 py-5 hover:bg-gray-100">📱 Contacto</a>
             <a onclick="document.getElementById('seccion-seguinos').scrollIntoView({behavior:'smooth'});toggleSidebar()" class="block px-6 py-5 hover:bg-gray-100">🔥 Seguinos en redes</a>
         </nav>
-        <div class="p-6 border-t text-xs text-gray-500">Accesorios Borrasca © 2025/2026</div>
     </div>
 
     <!-- VIDEO PORTADA -->
     <section class="max-w-screen-2xl mx-auto px-4 pt-8">
-        <div class="video-container w-full mx-auto overflow-hidden border-4 border-[var(--primary-black)] shadow-2xl bg-black">
+        <div class="video-container w-full mx-auto overflow-hidden border-4 border-[var(--primary-black)] shadow-2xl">
             <video id="hero-video" class="w-full h-full object-cover" autoplay loop muted playsinline>
                 <source src="videoweb.mp4" type="video/mp4">
             </video>
@@ -167,42 +160,44 @@
     <!-- TEXTO PRESENTACIÓN -->
     <section class="max-w-screen-2xl mx-auto px-4 py-10">
         <div class="content-float rounded-3xl p-8 text-center">
-            <h2 class="heading-font text-4xl font-bold single-line">Todo para tu moto, en un solo lugar</h2>
+            <h2 class="heading-font text-4xl font-bold single-line text-glow-dark">Todo para tu moto, en un solo lugar</h2>
             <p class="text-2xl mt-3 text-gray-700">Accesorios y repuestos de calidad al mejor precio</p>
             <p class="mt-8 text-lg max-w-xl mx-auto">Dale a tu moto el salto de nivel que se merece con repuestos y accesorios de calidad.</p>
         </div>
     </section>
 
-    <!-- SECCIÓN REPUESTOS Y ACCESORIOS -->
-    <section id="seccion-repuestos" class="max-w-screen-2xl mx-auto px-4 py-12 bg-white/80">
-        <div class="flex items-center gap-4 mb-8">
-            <span class="text-5xl">⚙️</span>
-            <h2 class="heading-font text-4xl font-bold single-line">Repuestos</h2>
+    <!-- SECCIÓN REPUESTOS -->
+    <section id="seccion-repuestos" class="max-w-screen-2xl mx-auto px-4 py-12">
+        <div class="text-center mb-10">
+            <div class="flex items-center justify-center gap-4">
+                <span class="text-5xl">⚙️</span>
+                <h2 class="heading-font text-4xl font-bold single-line">Repuestos</h2>
+            </div>
+            <p class="text-xl text-gray-600 mt-3">Repuestos y accesorios para mantener tu moto siempre lista.</p>
         </div>
-        <p class="text-xl text-gray-600 mb-10">Repuestos y accesorios para mantener tu moto siempre lista.</p>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 gap-6">
             <div onclick="openCarousel(0)" class="card-product bg-white cursor-pointer overflow-hidden">
-                <div class="p-4"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain border border-[var(--primary-black)]"></div>
+                <div class="p-4"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
                 <p class="text-center pb-4 font-medium">Motor &amp; Transmisión</p>
             </div>
             <div onclick="openCarousel(1)" class="card-product bg-white cursor-pointer overflow-hidden">
-                <div class="p-4"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain border border-[var(--primary-black)]"></div>
+                <div class="p-4"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
                 <p class="text-center pb-4 font-medium">Estilo &amp; Seguridad</p>
             </div>
             <div onclick="openCarousel(2)" class="card-product bg-white cursor-pointer overflow-hidden">
-                <div class="p-4"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain border border-[var(--primary-black)]"></div>
+                <div class="p-4"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
                 <p class="text-center pb-4 font-medium">Repuesto Premium</p>
             </div>
             <div onclick="openCarousel(3)" class="card-product bg-white cursor-pointer overflow-hidden">
-                <div class="p-4"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain border border-[var(--primary-black)]"></div>
+                <div class="p-4"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
                 <p class="text-center pb-4 font-medium">Accesorio Elite</p>
             </div>
         </div>
 
         <div class="flex justify-center mt-12">
             <button onclick="document.getElementById('seccion-repuestos').scrollIntoView({behavior:'smooth'})" 
-                    class="glow-button bg-[var(--primary-black)] hover:bg-black text-white font-bold text-lg px-14 py-6 rounded-none border-4 border-[var(--primary-black)] button-text">
+                    class="glow-button bg-[var(--primary-black)] text-white font-bold text-lg px-14 py-6 rounded-none border-4 border-[var(--primary-black)]">
                 ⚙️ VER MÁS ACCESORIOS Y REPUESTOS
             </button>
         </div>
@@ -212,28 +207,35 @@
     <div id="carousel-modal" onclick="if(event.target.id==='carousel-modal') closeCarousel()" 
          class="hidden fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4">
         <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-3xl rounded-none overflow-hidden">
-            <div class="p-6 border-b flex justify-between items-center">
+            <div class="p-6 border-b flex justify-between">
                 <h3 class="heading-font text-2xl font-bold">Galería de Productos</h3>
-                <button onclick="closeCarousel()" class="text-4xl leading-none">×</button>
+                <button onclick="closeCarousel()" class="text-4xl">×</button>
             </div>
             <div class="relative bg-black p-8">
                 <img id="carousel-image" src="logoweb.png" class="mx-auto max-h-[65vh] object-contain" alt="">
-                <button onclick="prevSlide()" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center text-4xl shadow">‹</button>
-                <button onclick="nextSlide()" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center text-4xl shadow">›</button>
+                <button onclick="prevSlide()" class="absolute left-8 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center text-4xl">‹</button>
+                <button onclick="nextSlide()" class="absolute right-8 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center text-4xl">›</button>
             </div>
             <div class="p-6 space-y-4">
                 <button onclick="verCatalogo()" class="w-full bg-[var(--primary-black)] text-white py-5 font-bold">Ver Catálogo</button>
-                <button onclick="closeCarousel()" class="w-full border-4 border-[var(--primary-black)] py-5 font-bold">Cerrar</button>
             </div>
         </div>
     </div>
 
-    <!-- SECCIÓN PARTICIPAR POR PREMIOS - Fondo y botón según indicación -->
-    <section class="max-w-screen-2xl mx-auto px-4 py-16 bg-gradient-to-br from-[#6b1e8a] via-black to-[#6b1e8a] text-white relative">
-        <div class="text-center">
+    <!-- SECCIÓN PARTICIPAR POR PREMIOS -->
+    <section class="max-w-screen-2xl mx-auto px-4 py-16 bg-gradient-to-br from-[#6b1e8a] to-black text-white relative">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="heading-font text-3xl font-bold mb-6">Conocé más sobre cómo podés ganar tu nueva Moto</h2>
+            <p class="text-lg leading-relaxed mb-8">
+                Obtené ofertas exclusivas y oportunidades de ganar.<br>
+                ¡Sumate a nuestro grupo de WhatsApp y formá parte de esta oportunidad!<br>
+                Conocé más de cómo hacerte parte de la comunidad.
+            </p>
+            
+            <!-- Botón verde como en la imagen -->
             <button onclick="openParticiparModal()" 
-                    class="glow-button bg-[#10b981] hover:bg-emerald-600 text-white font-bold text-xl px-12 py-6 rounded-none border-4 border-white button-text">
-                🏍️ (Cómo Participar)
+                    class="glow-button bg-[#10b981] hover:bg-emerald-600 text-white font-bold text-xl px-16 py-6 rounded-none border-4 border-white w-full max-w-xs mx-auto">
+                🏍️ Cómo Participar ⓘ
             </button>
         </div>
     </section>
@@ -242,11 +244,9 @@
     <div id="modal-participar" onclick="if(event.target.id==='modal-participar') closeParticiparModal()" 
          class="hidden fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4">
         <div onclick="event.stopImmediatePropagation()" class="bg-white text-black w-full max-w-md rounded-3xl p-8">
-            <h3 class="heading-font text-3xl font-bold mb-6">Conocé más sobre cómo podés ganar tu nueva Moto</h3>
+            <h3 class="heading-font text-3xl font-bold mb-6">Sumándote a nuestro WhatsApp...</h3>
             <p class="text-lg leading-relaxed mb-8">
-                Obtené ofertas exclusivas y oportunidades de ganar.<br>
-                ¡Sumate a nuestro grupo de WhatsApp y formá parte de esta oportunidad!<br>
-                Conocé más de cómo hacerte parte de la comunidad donde.
+                podés participar por increíbles premios y enterarte antes que nadie de todas las oportunidades.
             </p>
             <a href="https://sorteosborrasca.com" target="_blank" 
                class="block bg-[#10b981] text-white py-6 text-xl font-bold text-center rounded-none">Quiero Participar ⓘ</a>
@@ -257,9 +257,10 @@
     <section class="max-w-screen-2xl mx-auto px-4 py-16 content-float rounded-3xl mx-4">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 class="heading-font text-4xl font-bold mb-6 single-line">Simplemente, nos gustan las motos</h2>
-                <p class="text-lg leading-relaxed">Nos enfocamos en mejorar tu experiencia sobre dos ruedas con productos de calidad y atención pensada para vos.</p>
-                <p class="text-lg leading-relaxed mt-6">Somos compañeros y apasionados por las motos, con un mismo objetivo: ayudarte a elegir repuestos y accesorios que hagan rendir y ver mejor tu moto.<br><br>En ACCESORIOS BORRASCA te acompañamos en cada compra.</p>
+                <h2 class="heading-font text-4xl font-bold mb-6 single-line text-glow-dark">Simplemente, nos gustan las motos</h2>
+                <p class="text-lg leading-relaxed text-glow-dark">Nos enfocamos en mejorar tu experiencia sobre dos ruedas con productos de calidad y atención pensada para vos.</p>
+                <p class="text-lg leading-relaxed mt-6 text-glow-dark">Somos compañeros y apasionados por las motos, con un mismo objetivo: ayudarte a elegir repuestos y accesorios que hagan rendir y ver mejor tu moto.</p>
+                <p class="text-lg leading-relaxed mt-6 text-glow-dark">En ACCESORIOS BORRASCA te acompañamos en cada compra.</p>
             </div>
             <div class="flex justify-center">
                 <img src="fondoweb.png" alt="Quiénes somos" class="max-w-md w-full border-4 border-[var(--primary-black)] aspect-video object-cover">
@@ -274,12 +275,12 @@
             <p class="text-xl">Seguinos en redes para no perderte nuestras ofertas.</p>
         </div>
         
-        <div class="flex justify-center gap-8">
+        <div class="flex justify-center gap-10">
             <a href="https://www.instagram.com/accesorios_borrasca/" target="_blank" class="text-center">
                 <div class="w-20 h-20 bg-gradient-to-br from-[#e11d8a] to-[#6b1e8a] rounded-2xl flex items-center justify-center text-white text-6xl">📸</div>
                 <p class="mt-3 font-medium">Instagram</p>
             </a>
-            <a href="#" onclick="alert('TikTok próximamente'); return false" class="text-center">
+            <a href="#" onclick="alert('TikTok próximamente');return false" class="text-center">
                 <div class="w-20 h-20 bg-black rounded-2xl flex items-center justify-center text-white text-6xl">♬</div>
                 <p class="mt-3 font-medium">TikTok</p>
             </a>
@@ -296,7 +297,7 @@
         💬
     </a>
 
-    <!-- FOOTER BANNER -->
+    <!-- FOOTER -->
     <footer class="bg-white py-10 border-t-4 border-[var(--primary-black)]">
         <div class="max-w-screen-2xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 text-sm">
             <div class="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-3 font-medium">
@@ -307,13 +308,11 @@
             </div>
             
             <div class="flex items-center gap-3">
-                <img src="logoweb.png" alt="Logo pequeño" class="h-8">
+                <img src="logoweb.png" alt="Logo" class="h-8">
                 <span class="heading-font font-bold">ACCESORIOS BORRASCA</span>
             </div>
             
-            <div class="text-xs text-gray-500 text-center md:text-right">
-                Accesorios Borrasca © 2025/2026 – Todos los derechos reservados
-            </div>
+            <div class="text-xs text-gray-500">© 2025/2026 – Todos los derechos reservados</div>
         </div>
     </footer>
 
@@ -322,16 +321,15 @@
          class="hidden fixed inset-0 bg-black/80 z-[99999] flex items-center justify-center p-4">
         <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-lg rounded-3xl p-8">
             <h2 class="heading-font text-3xl font-bold text-center mb-8">Cómo Comprar</h2>
-            <ol class="space-y-5 text-lg">
-                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">01</span> Entrá al catálogo de productos.</li>
-                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">02</span> Elegí el repuesto o accesorio que necesitás.</li>
-                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">03</span> Hacé clic en el botón <strong>Comprar</strong>.</li>
-                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">04</span> Realizá el pago de forma segura.</li>
-                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">05</span> Completá tus datos o enviáselos a Román por WhatsApp.</li>
-                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">06</span> ¡Y listo! Nosotros nos encargamos del resto.</li>
+            <ol class="space-y-6 text-lg">
+                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">1.</span> Entrá al catálogo de productos.</li>
+                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">2.</span> Elegí el repuesto o accesorio que necesitás.</li>
+                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">3.</span> Hacé clic en el botón <strong>Comprar</strong>.</li>
+                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">4.</span> Realizá el pago de forma segura.</li>
+                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">5.</span> Completá tus datos o enviáselos a Román por WhatsApp.</li>
+                <li class="flex gap-4"><span class="font-bold text-[var(--logo-pink)]">6.</span> ¡Y listo! Nosotros nos encargamos del resto.</li>
             </ol>
-            <button onclick="closeComoComprar(); contactarWhatsApp()" 
-                    class="mt-10 w-full bg-[var(--primary-black)] text-white py-6 text-xl font-bold rounded-none">Ir a WhatsApp</button>
+            <button onclick="closeComoComprar()" class="mt-8 w-full py-4 border-2 border-gray-300">Cerrar</button>
         </div>
     </div>
 

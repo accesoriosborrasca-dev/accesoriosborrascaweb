@@ -8,22 +8,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-
         :root {
             --primary-black: #0a0a0a;
             --logo-purple: #6b1e8a;
             --logo-pink: #e11d8a;
         }
-
         * {
             transition-property: color, background-color, border-color, transform;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-duration: 180ms;
         }
-
         body {
             font-family: 'Inter', system_ui, sans-serif;
-            background: linear-gradient(to bottom, 
+            background: linear-gradient(to bottom,
                 rgba(255,255,255,0.95) 0%,
                 rgba(255,255,255,0.98) 30%,
                 #f8f8f8 100%);
@@ -31,43 +28,51 @@
             color: var(--primary-black);
             min-height: 100vh;
         }
-
         .heading-font {
             font-family: 'Space Grotesk', sans-serif;
             letter-spacing: -0.5px;
         }
-
         .content-section {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.12);
             border: 4px solid var(--primary-black);
         }
-
         .header-banner {
             border-bottom: 6px solid var(--primary-black);
             box-shadow: 0 8px 25px -5px rgb(0 0 0 / 0.15);
         }
-
+        .single-line {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
         .card-product {
             border: 4px solid var(--primary-black);
             box-shadow: 6px 6px 0 var(--primary-black);
-            overflow: hidden;
-            border-radius: 16px;
         }
-
         .card-product:hover {
             transform: translateY(-6px);
             box-shadow: 10px 10px 0 var(--primary-black);
         }
+        .glow-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .glow-button:hover {
+            transform: scale(1.03);
+        }
+        .text-main {
+            color: #0a0a0a;
+        }
 
-        /* Botones estilo exacto de la imagen */
+        /* Solo los botones de la sección repuestos */
         .product-button {
             display: block;
             width: 100%;
             max-width: 260px;
-            margin: 16px auto 0;
-            padding: 14px 24px;
+            margin: 0 auto;
+            padding: 12px 24px;
             border: 3px solid #0a0a0a;
             background: white;
             color: #0a0a0a;
@@ -77,49 +82,35 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            letter-spacing: 0.5px;
         }
-
         .product-button:hover {
             background: #0a0a0a;
             color: white;
         }
 
-        .glow-button {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glow-button:hover {
-            transform: scale(1.03);
-        }
-
-        .text-main {
-            color: #0a0a0a;
-        }
-
-        /* Brillo oscuro detrás del texto */
+        /* Brillo oscuro solo para los dos textos de presentación */
         .hero-text-bg {
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.55));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.45));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         @media (max-width: 640px) {
             .header-banner h1 {
-                font-size: 1.35rem !important;
+                font-size: 1.4rem !important;
+            }
+            .content-section {
+                margin: 0 8px;
+                border-radius: 20px;
             }
             .product-button {
                 font-size: 14px;
-                padding: 12px 20px;
-                max-width: 240px;
+                padding: 11px 20px;
             }
         }
     </style>
 </head>
 <body class="min-h-screen">
-
     <!-- HEADER -->
     <header class="header-banner bg-white sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto px-4">
@@ -140,7 +131,6 @@
             </div>
         </div>
     </header>
-
     <!-- VIDEO PORTADA -->
     <section class="max-w-screen-2xl mx-auto px-4 pt-6">
         <div class="w-full overflow-hidden border-4 border-[var(--primary-black)] shadow-2xl">
@@ -149,28 +139,17 @@
             </video>
         </div>
     </section>
-
     <!-- SECCIÓN PRESENTACIÓN -->
     <section class="max-w-screen-2xl mx-auto px-4 py-10">
-        <div class="content-section rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
-            <!-- Imagen portadados.png como fondo sutil -->
-            <img src="portadados.png" alt="Portada" class="absolute inset-0 w-full h-full object-cover opacity-20 z-0">
-
-            <div class="relative z-10">
-                <h2 class="heading-font text-4xl md:text-5xl font-bold text-main leading-tight">Todo para tu moto, en un solo lugar</h2>
-                
-                <div class="mt-6 space-y-4">
-                    <p class="text-2xl md:text-3xl font-medium hero-text-bg leading-tight">
-                        Accesorios y repuestos de calidad al mejor precio
-                    </p>
-                    <p class="text-lg md:text-xl hero-text-bg leading-tight max-w-2xl mx-auto">
-                        Dale a tu moto el salto de nivel que se merece con repuestos y accesorios de calidad.
-                    </p>
-                </div>
-            </div>
+        <div class="content-section rounded-3xl p-8 md:p-12 text-center">
+            <h2 class="heading-font text-4xl md:text-5xl font-bold text-main">Todo para tu moto, en un solo lugar</h2>
+            <p class="text-2xl mt-4 hero-text-bg">Accesorios y repuestos de calidad al mejor precio</p>
+            <p class="mt-8 text-lg max-w-2xl mx-auto hero-text-bg">Dale a tu moto el salto de nivel que se merece con repuestos y accesorios de calidad.</p>
+            
+            <!-- Imagen portadados.png solo aquí -->
+            <img src="portadados.png" alt="Portada" class="mt-10 mx-auto max-w-full rounded-2xl" style="max-height: 300px; object-fit: cover;">
         </div>
     </section>
-
     <!-- SECCIÓN REPUESTOS -->
     <section id="seccion-repuestos" class="max-w-screen-2xl mx-auto px-4 py-12">
         <div class="text-center mb-10">
@@ -180,41 +159,28 @@
             </div>
             <p class="text-xl text-gray-600 mt-3">Mantén tu moto siempre lista y con estilo.</p>
         </div>
-
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="card-product bg-white cursor-pointer">
+            <div onclick="openCarousel(0)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
                 <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <div class="px-6 pb-8 text-center">
-                    <p class="font-medium text-lg mb-5 text-main">Motor & Transmisión</p>
-                    <a onclick="openCarousel(0)" class="product-button">VER REPUESTOS</a>
-                </div>
+                <p class="text-center pb-6 font-medium text-lg">Motor & Transmisión</p>
+                <a onclick="event.stopImmediatePropagation(); openCarousel(0)" class="product-button">VER REPUESTOS</a>
             </div>
-
-            <div class="card-product bg-white cursor-pointer">
+            <div onclick="openCarousel(1)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
                 <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <div class="px-6 pb-8 text-center">
-                    <p class="font-medium text-lg mb-5 text-main">Estilo & Seguridad</p>
-                    <a onclick="openCarousel(1)" class="product-button">VER ACCESORIOS</a>
-                </div>
+                <p class="text-center pb-6 font-medium text-lg">Estilo & Seguridad</p>
+                <a onclick="event.stopImmediatePropagation(); openCarousel(1)" class="product-button">VER ACCESORIOS</a>
             </div>
-
-            <div class="card-product bg-white cursor-pointer">
+            <div onclick="openCarousel(2)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
                 <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <div class="px-6 pb-8 text-center">
-                    <p class="font-medium text-lg mb-5 text-main">Repuesto Premium</p>
-                    <a onclick="openCarousel(2)" class="product-button">VER REPUESTOS</a>
-                </div>
+                <p class="text-center pb-6 font-medium text-lg">Repuesto Premium</p>
+                <a onclick="event.stopImmediatePropagation(); openCarousel(2)" class="product-button">VER REPUESTOS</a>
             </div>
-
-            <div class="card-product bg-white cursor-pointer">
+            <div onclick="openCarousel(3)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
                 <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <div class="px-6 pb-8 text-center">
-                    <p class="font-medium text-lg mb-5 text-main">Accesorio Elite</p>
-                    <a onclick="openCarousel(3)" class="product-button">VER ACCESORIOS</a>
-                </div>
+                <p class="text-center pb-6 font-medium text-lg">Accesorio Elite</p>
+                <a onclick="event.stopImmediatePropagation(); openCarousel(3)" class="product-button">VER ACCESORIOS</a>
             </div>
         </div>
-
         <div class="flex justify-center mt-12">
             <button onclick="document.getElementById('seccion-repuestos').scrollIntoView({behavior:'smooth'})"
                     class="glow-button bg-[var(--primary-black)] text-white font-bold text-lg px-14 py-6 border-4 border-[var(--primary-black)]">
@@ -222,31 +188,62 @@
             </button>
         </div>
     </section>
-
     <!-- SECCIÓN PARTICIPAR POR PREMIOS -->
     <section class="max-w-screen-2xl mx-auto px-4 py-16 bg-gradient-to-br from-[#6b1e8a] via-purple-900 to-black text-white relative">
         <div class="max-w-2xl mx-auto text-center">
             <h2 class="heading-font text-3xl md:text-4xl font-bold mb-6">¡Ganate tu nueva Moto!</h2>
             <p class="text-lg leading-relaxed mb-8 px-4">
-                Obtené ofertas exclusivas y oportunidades de ganar.<br>
-                ¡Sumate a nuestro grupo de WhatsApp y formá parte de esta oportunidad!
+                Sumate a nuestro grupo de WhatsApp y participá por increíbles premios.<br>
+                Ofertas exclusivas y novedades antes que nadie.
             </p>
-            <!-- Botón cambiado a blanco con letras negras -->
             <button onclick="openParticiparModal()"
                     class="glow-button bg-white hover:bg-gray-100 text-black font-bold text-xl px-16 py-6 border-4 border-black w-full max-w-xs mx-auto">
                 🏍️ Cómo Participar
             </button>
         </div>
     </section>
-
-    <!-- QUIÉNES SOMOS, SEGUINOS, FOOTER y resto quedan igual -->
-
+    <!-- QUIÉNES SOMOS -->
+    <section class="max-w-screen-2xl mx-auto px-4 py-16">
+        <div class="content-section rounded-3xl p-8 md:p-12">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="heading-font text-4xl font-bold mb-6 text-main">Simplemente, nos gustan las motos</h2>
+                    <p class="text-lg leading-relaxed text-gray-800">Nos enfocamos en mejorar tu experiencia sobre dos ruedas con productos de calidad y atención pensada para vos.</p>
+                    <p class="text-lg leading-relaxed mt-6 text-gray-800">Somos compañeros y apasionados por las motos, con un mismo objetivo: ayudarte a elegir repuestos y accesorios que hagan rendir y ver mejor tu moto.</p>
+                    <p class="text-lg leading-relaxed mt-6 text-gray-800">En ACCESORIOS BORRASCA te acompañamos en cada compra.</p>
+                </div>
+                <div class="flex justify-center">
+                    <img src="fondoweb.png" alt="Quiénes somos" class="max-w-full md:max-w-md w-full border-4 border-[var(--primary-black)] rounded-2xl object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SEGUINOS EN REDES -->
+    <section id="seccion-seguinos" class="max-w-screen-2xl mx-auto px-4 py-16">
+        <div class="content-section rounded-3xl p-8 md:p-12 text-center">
+            <h2 class="heading-font text-4xl font-bold text-main mb-4">Sumate a nuestra comunidad</h2>
+            <p class="text-xl text-gray-600">Seguinos en redes para no perderte nuestras ofertas y novedades.</p>
+            <div class="flex justify-center gap-10 mt-12">
+                <a href="https://www.instagram.com/accesorios_borrasca/" target="_blank" class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-[#e11d8a] to-[#6b1e8a] rounded-2xl flex items-center justify-center text-white text-6xl mx-auto group-hover:scale-110">📸</div>
+                    <p class="mt-3 font-medium">Instagram</p>
+                </a>
+                <a href="#" onclick="alert('TikTok próximamente');return false" class="text-center group">
+                    <div class="w-20 h-20 bg-black rounded-2xl flex items-center justify-center text-white text-6xl mx-auto group-hover:scale-110">♬</div>
+                    <p class="mt-3 font-medium">TikTok</p>
+                </a>
+                <a href="https://www.facebook.com/roman.borra" target="_blank" class="text-center group">
+                    <div class="w-20 h-20 bg-[#1877f2] rounded-2xl flex items-center justify-center text-white text-6xl mx-auto group-hover:scale-110">f</div>
+                    <p class="mt-3 font-medium">Facebook</p>
+                </a>
+            </div>
+        </div>
+    </section>
     <!-- WHATSAPP FLOTANTE -->
-    <a onclick="contactarWhatsApp()" 
+    <a onclick="contactarWhatsApp()"
        class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shadow-2xl border-4 border-white z-[9999] hover:scale-110">
         💬
     </a>
-
     <!-- FOOTER -->
     <footer class="bg-white py-10 border-t-4 border-[var(--primary-black)]">
         <div class="max-w-screen-2xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 text-sm">
@@ -265,19 +262,13 @@
     </footer>
 
     <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            if (sidebar) sidebar.classList.toggle('-translate-x-full');
-        }
-
         function contactarWhatsApp() {
-            window.open('https://wa.me/5492395418232?text=Hola!%20Quiero%20hacer%20una%20consulta.', '_blank');
+            window.open('https://wa.me/5492395418232?text=Hola!%20Quiero%20hacer%20una%20consulta.', '_blank')
         }
-
         window.onload = () => {
-            const video = document.getElementById('hero-video');
-            if (video) video.play();
-        };
+            const video = document.getElementById('hero-video')
+            if (video) video.play()
+        }
     </script>
 </body>
 </html>

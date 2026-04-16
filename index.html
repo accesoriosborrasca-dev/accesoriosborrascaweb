@@ -65,36 +65,28 @@
         .text-main {
             color: #0a0a0a;
         }
-
-        /* Solo los botones de la sección repuestos */
-        .product-button {
-            display: block;
+        /* Botones debajo de imágenes en sección repuestos: finitos, anchos, simétricos */
+        .product-btn {
             width: 100%;
-            max-width: 260px;
-            margin: 0 auto;
-            padding: 12px 24px;
-            border: 3px solid #0a0a0a;
+            border: 3px solid var(--primary-black);
             background: white;
-            color: #0a0a0a;
-            font-weight: 700;
+            color: var(--primary-black);
+            font-weight: 600;
             font-size: 15px;
-            text-align: center;
+            padding: 14px 0;
+            letter-spacing: 0.5px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .product-button:hover {
-            background: #0a0a0a;
+        .product-btn:hover {
+            background: var(--primary-black);
             color: white;
         }
-
-        /* Brillo oscuro solo para los dos textos de presentación */
-        .hero-text-bg {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.45));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Overlay oscuro para texto blanco */
+        .text-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.75));
         }
-
         @media (max-width: 640px) {
             .header-banner h1 {
                 font-size: 1.4rem !important;
@@ -103,9 +95,9 @@
                 margin: 0 8px;
                 border-radius: 20px;
             }
-            .product-button {
+            .product-btn {
                 font-size: 14px;
-                padding: 11px 20px;
+                padding: 12px 0;
             }
         }
     </style>
@@ -131,6 +123,7 @@
             </div>
         </div>
     </header>
+
     <!-- VIDEO PORTADA -->
     <section class="max-w-screen-2xl mx-auto px-4 pt-6">
         <div class="w-full overflow-hidden border-4 border-[var(--primary-black)] shadow-2xl">
@@ -139,18 +132,22 @@
             </video>
         </div>
     </section>
-    <!-- SECCIÓN PRESENTACIÓN -->
-    <section class="max-w-screen-2xl mx-auto px-4 py-10">
-        <div class="content-section rounded-3xl p-8 md:p-12 text-center">
-            <h2 class="heading-font text-4xl md:text-5xl font-bold text-main">Todo para tu moto, en un solo lugar</h2>
-            <p class="text-2xl mt-4 hero-text-bg">Accesorios y repuestos de calidad al mejor precio</p>
-            <p class="mt-8 text-lg max-w-2xl mx-auto hero-text-bg">Dale a tu moto el salto de nivel que se merece con repuestos y accesorios de calidad.</p>
-            
-            <!-- Imagen portadados.png solo aquí -->
-            <img src="portadados.png" alt="Portada" class="mt-10 mx-auto max-w-full rounded-2xl" style="max-height: 300px; object-fit: cover;">
+
+    <!-- SECCIÓN PRESENTACIÓN CON TEXTO Y OVERLAY OSCURO -->
+    <section class="max-w-screen-2xl mx-auto px-4 py-10 relative">
+        <img src="portadados.png" alt="Portada" class="w-full rounded-3xl">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 rounded-3xl"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-8 text-white text-center">
+            <p class="text-2xl md:text-3xl leading-tight font-medium">
+                Accesorios y repuestos de calidad al mejor precio
+            </p>
+            <p class="mt-3 text-xl md:text-2xl leading-tight">
+                Dale a tu moto el salto de nivel que se merece con repuestos y accesorios de calidad.
+            </p>
         </div>
     </section>
-    <!-- SECCIÓN REPUESTOS -->
+
+    <!-- SECCIÓN REPUESTOS Y ACCESORIOS -->
     <section id="seccion-repuestos" class="max-w-screen-2xl mx-auto px-4 py-12">
         <div class="text-center mb-10">
             <div class="flex items-center justify-center gap-4">
@@ -159,28 +156,53 @@
             </div>
             <p class="text-xl text-gray-600 mt-3">Mantén tu moto siempre lista y con estilo.</p>
         </div>
+        
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div onclick="openCarousel(0)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
-                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <p class="text-center pb-6 font-medium text-lg">Motor & Transmisión</p>
-                <a onclick="event.stopImmediatePropagation(); openCarousel(0)" class="product-button">VER REPUESTOS</a>
+            <!-- Producto 1 -->
+            <div class="card-product bg-white cursor-pointer overflow-hidden rounded-xl flex flex-col">
+                <div class="p-6 flex-1 flex items-center justify-center bg-white">
+                    <img src="fondoweb.png" alt="Motor & Repuestos" class="w-full aspect-square object-contain">
+                </div>
+                <div class="px-6 pb-6">
+                    <p class="text-center font-medium text-lg mb-4 single-line">Motor &amp; Repuestos</p>
+                    <button onclick="openCarousel(0)" class="product-btn">Ver Repuestos</button>
+                </div>
             </div>
-            <div onclick="openCarousel(1)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
-                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <p class="text-center pb-6 font-medium text-lg">Estilo & Seguridad</p>
-                <a onclick="event.stopImmediatePropagation(); openCarousel(1)" class="product-button">VER ACCESORIOS</a>
+            
+            <!-- Producto 2 -->
+            <div class="card-product bg-white cursor-pointer overflow-hidden rounded-xl flex flex-col">
+                <div class="p-6 flex-1 flex items-center justify-center bg-white">
+                    <img src="fondoweb.png" alt="Estilo & Estética" class="w-full aspect-square object-contain">
+                </div>
+                <div class="px-6 pb-6">
+                    <p class="text-center font-medium text-lg mb-4 single-line">Estilo &amp; Estética</p>
+                    <button onclick="openCarousel(1)" class="product-btn">Ver Accesorios</button>
+                </div>
             </div>
-            <div onclick="openCarousel(2)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
-                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <p class="text-center pb-6 font-medium text-lg">Repuesto Premium</p>
-                <a onclick="event.stopImmediatePropagation(); openCarousel(2)" class="product-button">VER REPUESTOS</a>
+            
+            <!-- Producto 3 (mantengo los otros dos como en tu código) -->
+            <div onclick="openCarousel(2)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl flex flex-col">
+                <div class="p-6 flex-1 flex items-center justify-center bg-white">
+                    <img src="logoweb.png" alt="" class="w-full aspect-square object-contain">
+                </div>
+                <div class="px-6 pb-6">
+                    <p class="text-center font-medium text-lg mb-4 single-line">Repuesto Premium</p>
+                    <button class="product-btn">Ver Repuestos</button>
+                </div>
             </div>
-            <div onclick="openCarousel(3)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl">
-                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
-                <p class="text-center pb-6 font-medium text-lg">Accesorio Elite</p>
-                <a onclick="event.stopImmediatePropagation(); openCarousel(3)" class="product-button">VER ACCESORIOS</a>
+            
+            <!-- Producto 4 -->
+            <div onclick="openCarousel(3)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl flex flex-col">
+                <div class="p-6 flex-1 flex items-center justify-center bg-white">
+                    <img src="logoweb.png" alt="" class="w-full aspect-square object-contain">
+                </div>
+                <div class="px-6 pb-6">
+                    <p class="text-center font-medium text-lg mb-4 single-line">Accesorio Elite</p>
+                    <button class="product-btn">Ver Accesorios</button>
+                </div>
             </div>
         </div>
+        
         <div class="flex justify-center mt-12">
             <button onclick="document.getElementById('seccion-repuestos').scrollIntoView({behavior:'smooth'})"
                     class="glow-button bg-[var(--primary-black)] text-white font-bold text-lg px-14 py-6 border-4 border-[var(--primary-black)]">
@@ -188,20 +210,23 @@
             </button>
         </div>
     </section>
+
     <!-- SECCIÓN PARTICIPAR POR PREMIOS -->
     <section class="max-w-screen-2xl mx-auto px-4 py-16 bg-gradient-to-br from-[#6b1e8a] via-purple-900 to-black text-white relative">
         <div class="max-w-2xl mx-auto text-center">
             <h2 class="heading-font text-3xl md:text-4xl font-bold mb-6">¡Ganate tu nueva Moto!</h2>
             <p class="text-lg leading-relaxed mb-8 px-4">
-                Sumate a nuestro grupo de WhatsApp y participá por increíbles premios.<br>
-                Ofertas exclusivas y novedades antes que nadie.
+                Obtené ofertas exclusivas y oportunidades de ganar.<br>
+                ¡Sumate a nuestro grupo de WhatsApp y formá parte de esta oportunidad!<br>
+                Conocé más de como hacerte parte de la comunidad donde.
             </p>
-            <button onclick="openParticiparModal()"
-                    class="glow-button bg-white hover:bg-gray-100 text-black font-bold text-xl px-16 py-6 border-4 border-black w-full max-w-xs mx-auto">
-                🏍️ Cómo Participar
+            <button onclick="openParticiparModal()" 
+                    class="glow-button bg-white text-black font-bold text-xl px-16 py-6 border-4 border-black w-full max-w-xs mx-auto">
+                🏍️ Más Información
             </button>
         </div>
     </section>
+
     <!-- QUIÉNES SOMOS -->
     <section class="max-w-screen-2xl mx-auto px-4 py-16">
         <div class="content-section rounded-3xl p-8 md:p-12">
@@ -218,6 +243,7 @@
             </div>
         </div>
     </section>
+
     <!-- SEGUINOS EN REDES -->
     <section id="seccion-seguinos" class="max-w-screen-2xl mx-auto px-4 py-16">
         <div class="content-section rounded-3xl p-8 md:p-12 text-center">
@@ -239,11 +265,13 @@
             </div>
         </div>
     </section>
+
     <!-- WHATSAPP FLOTANTE -->
     <a onclick="contactarWhatsApp()"
        class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shadow-2xl border-4 border-white z-[9999] hover:scale-110">
         💬
     </a>
+
     <!-- FOOTER -->
     <footer class="bg-white py-10 border-t-4 border-[var(--primary-black)]">
         <div class="max-w-screen-2xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 text-sm">
@@ -269,6 +297,8 @@
             const video = document.getElementById('hero-video')
             if (video) video.play()
         }
+        // Mantengo el resto de funciones (toggleSidebar, openCarousel, etc.) sin cambios
+        // Agrega aquí tus funciones originales si las tienes
     </script>
 </body>
 </html>

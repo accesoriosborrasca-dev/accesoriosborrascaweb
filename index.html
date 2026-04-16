@@ -53,6 +53,7 @@
             border: 4px solid var(--primary-black);
             box-shadow: 6px 6px 0 var(--primary-black);
             overflow: hidden;
+            border-radius: 16px;
         }
 
         .card-product:hover {
@@ -60,23 +61,23 @@
             box-shadow: 10px 10px 0 var(--primary-black);
         }
 
-        /* Botones estilo imagen solicitada */
+        /* Botones estilo exacto de la imagen */
         .product-button {
             display: block;
             width: 100%;
-            max-width: 280px;
-            margin: 0 auto;
-            padding: 12px 20px;
+            max-width: 260px;
+            margin: 16px auto 0;
+            padding: 14px 24px;
             border: 3px solid #0a0a0a;
             background: white;
             color: #0a0a0a;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 15px;
             text-align: center;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            transition: all 0.2s;
+            letter-spacing: 0.5px;
         }
 
         .product-button:hover {
@@ -97,9 +98,9 @@
             color: #0a0a0a;
         }
 
-        /* Brillo oscuro detrás del texto de presentación */
+        /* Brillo oscuro detrás del texto */
         .hero-text-bg {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.45));
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.55));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -109,13 +110,10 @@
             .header-banner h1 {
                 font-size: 1.35rem !important;
             }
-            .content-section {
-                margin: 0 10px;
-                border-radius: 20px;
-            }
             .product-button {
                 font-size: 14px;
-                padding: 11px 16px;
+                padding: 12px 20px;
+                max-width: 240px;
             }
         }
     </style>
@@ -129,7 +127,6 @@
                 <button onclick="toggleSidebar()" class="flex-shrink-0 w-12 h-12 flex items-center justify-center text-4xl text-[var(--primary-black)] active:scale-95">
                     ☰
                 </button>
-
                 <div class="flex-1 flex justify-center px-3">
                     <div class="inline-flex items-center gap-x-3 bg-white border-4 border-[var(--primary-black)] px-6 py-3 shadow-inner">
                         <img src="logoweb.png" alt="Logo" class="h-8 w-auto">
@@ -155,18 +152,18 @@
 
     <!-- SECCIÓN PRESENTACIÓN -->
     <section class="max-w-screen-2xl mx-auto px-4 py-10">
-        <div class="content-section rounded-3xl p-8 md:p-12 text-center relative">
-            <!-- Imagen de fondo (portadados.png) -->
-            <img src="portadados.png" alt="Portada" class="absolute inset-0 w-full h-full object-cover rounded-3xl opacity-20 z-0">
+        <div class="content-section rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+            <!-- Imagen portadados.png como fondo sutil -->
+            <img src="portadados.png" alt="Portada" class="absolute inset-0 w-full h-full object-cover opacity-20 z-0">
 
             <div class="relative z-10">
                 <h2 class="heading-font text-4xl md:text-5xl font-bold text-main leading-tight">Todo para tu moto, en un solo lugar</h2>
                 
-                <div class="mt-6 space-y-3">
-                    <p class="text-2xl md:text-3xl font-medium text-white hero-text-bg leading-tight px-4">
+                <div class="mt-6 space-y-4">
+                    <p class="text-2xl md:text-3xl font-medium hero-text-bg leading-tight">
                         Accesorios y repuestos de calidad al mejor precio
                     </p>
-                    <p class="text-lg md:text-xl text-white hero-text-bg leading-tight max-w-2xl mx-auto px-4">
+                    <p class="text-lg md:text-xl hero-text-bg leading-tight max-w-2xl mx-auto">
                         Dale a tu moto el salto de nivel que se merece con repuestos y accesorios de calidad.
                     </p>
                 </div>
@@ -174,7 +171,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN REPUESTOS Y ACCESORIOS -->
+    <!-- SECCIÓN REPUESTOS -->
     <section id="seccion-repuestos" class="max-w-screen-2xl mx-auto px-4 py-12">
         <div class="text-center mb-10">
             <div class="flex items-center justify-center gap-4">
@@ -185,46 +182,34 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <!-- Tarjeta 1 -->
-            <div class="card-product bg-white cursor-pointer rounded-2xl overflow-hidden">
-                <div class="p-6 bg-white">
-                    <img src="logoweb.png" alt="Motor & Repuestos" class="w-full aspect-square object-contain">
-                </div>
+            <div class="card-product bg-white cursor-pointer">
+                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
                 <div class="px-6 pb-8 text-center">
-                    <p class="font-semibold text-lg mb-4 text-main">Motor & Repuestos</p>
+                    <p class="font-medium text-lg mb-5 text-main">Motor & Transmisión</p>
                     <a onclick="openCarousel(0)" class="product-button">VER REPUESTOS</a>
                 </div>
             </div>
 
-            <!-- Tarjeta 2 -->
-            <div class="card-product bg-white cursor-pointer rounded-2xl overflow-hidden">
-                <div class="p-6 bg-white">
-                    <img src="logoweb.png" alt="Estilo & Estética" class="w-full aspect-square object-contain">
-                </div>
+            <div class="card-product bg-white cursor-pointer">
+                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
                 <div class="px-6 pb-8 text-center">
-                    <p class="font-semibold text-lg mb-4 text-main">Estilo & Estética</p>
+                    <p class="font-medium text-lg mb-5 text-main">Estilo & Seguridad</p>
                     <a onclick="openCarousel(1)" class="product-button">VER ACCESORIOS</a>
                 </div>
             </div>
 
-            <!-- Tarjeta 3 -->
-            <div class="card-product bg-white cursor-pointer rounded-2xl overflow-hidden">
-                <div class="p-6 bg-white">
-                    <img src="logoweb.png" alt="Repuesto Premium" class="w-full aspect-square object-contain">
-                </div>
+            <div class="card-product bg-white cursor-pointer">
+                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
                 <div class="px-6 pb-8 text-center">
-                    <p class="font-semibold text-lg mb-4 text-main">Repuesto Premium</p>
+                    <p class="font-medium text-lg mb-5 text-main">Repuesto Premium</p>
                     <a onclick="openCarousel(2)" class="product-button">VER REPUESTOS</a>
                 </div>
             </div>
 
-            <!-- Tarjeta 4 -->
-            <div class="card-product bg-white cursor-pointer rounded-2xl overflow-hidden">
-                <div class="p-6 bg-white">
-                    <img src="logoweb.png" alt="Accesorio Elite" class="w-full aspect-square object-contain">
-                </div>
+            <div class="card-product bg-white cursor-pointer">
+                <div class="p-6"><img src="logoweb.png" alt="" class="w-full aspect-square object-contain"></div>
                 <div class="px-6 pb-8 text-center">
-                    <p class="font-semibold text-lg mb-4 text-main">Accesorio Elite</p>
+                    <p class="font-medium text-lg mb-5 text-main">Accesorio Elite</p>
                     <a onclick="openCarousel(3)" class="product-button">VER ACCESORIOS</a>
                 </div>
             </div>
@@ -246,8 +231,7 @@
                 Obtené ofertas exclusivas y oportunidades de ganar.<br>
                 ¡Sumate a nuestro grupo de WhatsApp y formá parte de esta oportunidad!
             </p>
-            
-            <!-- Botón modificado: blanco con texto negro -->
+            <!-- Botón cambiado a blanco con letras negras -->
             <button onclick="openParticiparModal()"
                     class="glow-button bg-white hover:bg-gray-100 text-black font-bold text-xl px-16 py-6 border-4 border-black w-full max-w-xs mx-auto">
                 🏍️ Cómo Participar
@@ -255,7 +239,7 @@
         </div>
     </section>
 
-    <!-- QUIÉNES SOMOS, SEGUINOS, FOOTER... (mantienen el estilo anterior) -->
+    <!-- QUIÉNES SOMOS, SEGUINOS, FOOTER y resto quedan igual -->
 
     <!-- WHATSAPP FLOTANTE -->
     <a onclick="contactarWhatsApp()" 
@@ -282,7 +266,6 @@
 
     <script>
         function toggleSidebar() {
-            // Tu función del sidebar (asegúrate de que la "X" esté bien posicionada)
             const sidebar = document.getElementById('sidebar');
             if (sidebar) sidebar.classList.toggle('-translate-x-full');
         }

@@ -65,7 +65,8 @@
         .text-main {
             color: #0a0a0a;
         }
-        /* Botones debajo de imágenes en sección repuestos: finitos, anchos, simétricos */
+        
+        /* Botones debajo de las imágenes en Repuestos & Accesorios - exactamente como pediste */
         .product-btn {
             width: 100%;
             border: 3px solid var(--primary-black);
@@ -78,15 +79,63 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            margin-top: auto;
         }
         .product-btn:hover {
             background: var(--primary-black);
             color: white;
         }
-        /* Overlay oscuro para texto blanco */
-        .text-overlay {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.75));
+        
+        /* Sidebar menu - logo + título en un solo renglón y X en la punta superior derecha */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 320px;
+            height: 100%;
+            background: white;
+            box-shadow: 10px 0 30px -10px rgba(0,0,0,0.3);
+            z-index: 99999;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-right: 6px solid var(--primary-black);
         }
+        #sidebar.open {
+            left: 0;
+        }
+        .sidebar-header {
+            position: relative;
+            padding: 20px 24px 20px 24px;
+            border-bottom: 4px solid var(--primary-black);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .sidebar-header h2 {
+            font-size: 1.35rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: 1;
+        }
+        .close-btn {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            font-size: 36px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-black);
+            line-height: 1;
+        }
+        
+        /* Overlay oscuro para el texto sobre portadados.png */
+        .text-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.75));
+        }
+        
         @media (max-width: 640px) {
             .header-banner h1 {
                 font-size: 1.4rem !important;
@@ -97,13 +146,17 @@
             }
             .product-btn {
                 font-size: 14px;
-                padding: 12px 0;
+                padding: 13px 0;
+            }
+            .sidebar-header h2 {
+                font-size: 1.25rem;
             }
         }
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- HEADER -->
+
+    <!-- HEADER (sin cambios) -->
     <header class="header-banner bg-white sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto px-4">
             <div class="h-20 flex items-center">
@@ -124,7 +177,7 @@
         </div>
     </header>
 
-    <!-- VIDEO PORTADA -->
+    <!-- VIDEO PORTADA (sin cambios) -->
     <section class="max-w-screen-2xl mx-auto px-4 pt-6">
         <div class="w-full overflow-hidden border-4 border-[var(--primary-black)] shadow-2xl">
             <video id="hero-video" class="w-full h-full object-cover aspect-video" autoplay loop muted playsinline>
@@ -133,12 +186,12 @@
         </div>
     </section>
 
-    <!-- SECCIÓN PRESENTACIÓN CON TEXTO Y OVERLAY OSCURO -->
+    <!-- SECCIÓN PRESENTACIÓN - Texto sobre portadados.png con brillo oscuro -->
     <section class="max-w-screen-2xl mx-auto px-4 py-10 relative">
         <img src="portadados.png" alt="Portada" class="w-full rounded-3xl">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 rounded-3xl"></div>
-        <div class="absolute bottom-0 left-0 right-0 p-8 text-white text-center">
-            <p class="text-2xl md:text-3xl leading-tight font-medium">
+        <div class="absolute inset-0 text-overlay rounded-3xl"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white text-center">
+            <p class="text-2xl md:text-3xl leading-tight font-medium single-line">
                 Accesorios y repuestos de calidad al mejor precio
             </p>
             <p class="mt-3 text-xl md:text-2xl leading-tight">
@@ -147,7 +200,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN REPUESTOS Y ACCESORIOS -->
+    <!-- SECCIÓN REPUESTOS Y ACCESORIOS - Botones corregidos -->
     <section id="seccion-repuestos" class="max-w-screen-2xl mx-auto px-4 py-12">
         <div class="text-center mb-10">
             <div class="flex items-center justify-center gap-4">
@@ -158,9 +211,9 @@
         </div>
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <!-- Producto 1 -->
+            <!-- Motor & Repuestos -->
             <div class="card-product bg-white cursor-pointer overflow-hidden rounded-xl flex flex-col">
-                <div class="p-6 flex-1 flex items-center justify-center bg-white">
+                <div class="p-6 flex-1 flex items-center justify-center">
                     <img src="fondoweb.png" alt="Motor & Repuestos" class="w-full aspect-square object-contain">
                 </div>
                 <div class="px-6 pb-6">
@@ -169,9 +222,9 @@
                 </div>
             </div>
             
-            <!-- Producto 2 -->
+            <!-- Estilo & Estética -->
             <div class="card-product bg-white cursor-pointer overflow-hidden rounded-xl flex flex-col">
-                <div class="p-6 flex-1 flex items-center justify-center bg-white">
+                <div class="p-6 flex-1 flex items-center justify-center">
                     <img src="fondoweb.png" alt="Estilo & Estética" class="w-full aspect-square object-contain">
                 </div>
                 <div class="px-6 pb-6">
@@ -180,9 +233,9 @@
                 </div>
             </div>
             
-            <!-- Producto 3 (mantengo los otros dos como en tu código) -->
+            <!-- Repuesto Premium -->
             <div onclick="openCarousel(2)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl flex flex-col">
-                <div class="p-6 flex-1 flex items-center justify-center bg-white">
+                <div class="p-6 flex-1 flex items-center justify-center">
                     <img src="logoweb.png" alt="" class="w-full aspect-square object-contain">
                 </div>
                 <div class="px-6 pb-6">
@@ -191,9 +244,9 @@
                 </div>
             </div>
             
-            <!-- Producto 4 -->
+            <!-- Accesorio Elite -->
             <div onclick="openCarousel(3)" class="card-product bg-white cursor-pointer overflow-hidden rounded-xl flex flex-col">
-                <div class="p-6 flex-1 flex items-center justify-center bg-white">
+                <div class="p-6 flex-1 flex items-center justify-center">
                     <img src="logoweb.png" alt="" class="w-full aspect-square object-contain">
                 </div>
                 <div class="px-6 pb-6">
@@ -211,7 +264,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN PARTICIPAR POR PREMIOS -->
+    <!-- SECCIÓN PARTICIPAR POR PREMIOS - Botón blanco con letras negras -->
     <section class="max-w-screen-2xl mx-auto px-4 py-16 bg-gradient-to-br from-[#6b1e8a] via-purple-900 to-black text-white relative">
         <div class="max-w-2xl mx-auto text-center">
             <h2 class="heading-font text-3xl md:text-4xl font-bold mb-6">¡Ganate tu nueva Moto!</h2>
@@ -227,7 +280,7 @@
         </div>
     </section>
 
-    <!-- QUIÉNES SOMOS -->
+    <!-- QUIÉNES SOMOS (sin cambios) -->
     <section class="max-w-screen-2xl mx-auto px-4 py-16">
         <div class="content-section rounded-3xl p-8 md:p-12">
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -244,7 +297,7 @@
         </div>
     </section>
 
-    <!-- SEGUINOS EN REDES -->
+    <!-- SEGUINOS EN REDES (sin cambios) -->
     <section id="seccion-seguinos" class="max-w-screen-2xl mx-auto px-4 py-16">
         <div class="content-section rounded-3xl p-8 md:p-12 text-center">
             <h2 class="heading-font text-4xl font-bold text-main mb-4">Sumate a nuestra comunidad</h2>
@@ -266,13 +319,13 @@
         </div>
     </section>
 
-    <!-- WHATSAPP FLOTANTE -->
+    <!-- WHATSAPP FLOTANTE (sin cambios) -->
     <a onclick="contactarWhatsApp()"
        class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shadow-2xl border-4 border-white z-[9999] hover:scale-110">
         💬
     </a>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (sin cambios) -->
     <footer class="bg-white py-10 border-t-4 border-[var(--primary-black)]">
         <div class="max-w-screen-2xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 text-sm">
             <div class="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-3 font-medium">
@@ -289,16 +342,39 @@
         </div>
     </footer>
 
+    <!-- MENÚ LATERAL (Sidebar) con logo + título en un renglón y X en la punta -->
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <img src="logoweb.png" alt="Logo" class="h-9 w-auto flex-shrink-0">
+            <h2 class="heading-font font-bold text-[var(--primary-black)]">ACCESORIOS BORRASCA</h2>
+            <button onclick="toggleSidebar()" class="close-btn">×</button>
+        </div>
+        
+        <!-- Aquí van las opciones del menú lateral (agrega tus enlaces originales) -->
+        <div class="p-6 space-y-6 text-lg font-medium">
+            <a onclick="openComoComprar(); toggleSidebar()" class="block cursor-pointer hover:text-[#e11d8a]">Cómo Comprar</a>
+            <a onclick="document.getElementById('seccion-repuestos').scrollIntoView({behavior:'smooth'}); toggleSidebar()" class="block cursor-pointer hover:text-[#e11d8a]">Ir a la tienda</a>
+            <a onclick="contactarWhatsApp(); toggleSidebar()" class="block cursor-pointer hover:text-[#e11d8a]">Contacto</a>
+            <a onclick="document.getElementById('seccion-seguinos').scrollIntoView({behavior:'smooth'}); toggleSidebar()" class="block cursor-pointer hover:text-[#e11d8a]">Seguinos en redes</a>
+        </div>
+    </div>
+
     <script>
         function contactarWhatsApp() {
             window.open('https://wa.me/5492395418232?text=Hola!%20Quiero%20hacer%20una%20consulta.', '_blank')
         }
+        
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar')
+            sidebar.classList.toggle('open')
+        }
+        
         window.onload = () => {
             const video = document.getElementById('hero-video')
             if (video) video.play()
         }
-        // Mantengo el resto de funciones (toggleSidebar, openCarousel, etc.) sin cambios
-        // Agrega aquí tus funciones originales si las tienes
+        
+        // Agrega aquí tus otras funciones (openCarousel, openParticiparModal, openComoComprar, etc.)
     </script>
 </body>
 </html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Accesorios Borrasca - Repuestos y accesorios premium para motos. Calidad, precio y pasión por dos ruedas.">
+    <title>Accesorios Borrasca | Todo para tu moto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --tw-color-primary: #111111;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tailwind-ready {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-image: url('fondoweb.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .content-float {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-banner {
+            box-shadow: 0 4px 20px -2px rgb(0 0 0 / 0.1);
+        }
+
+        .card-product {
+            border: 3px solid #111111;
+            border-radius: 0;
+            box-shadow: 8px 8px 0 -2px #111111;
+        }
+
+        .card-product:hover {
+            transform: translateY(-4px);
+            box-shadow: 12px 12px 0 -2px #111111;
+        }
+
+        .modal-carousel {
+            animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .sidebar {
+            animation: slideIn 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+
+        .cortina {
+            animation: cortinaSlide 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+
+        .glow-button {
+            position: relative;
+        }
+        
+        .glow-button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #f59e0b, #ec4899, #f59e0b);
+            filter: blur(12px);
+            opacity: 0;
+            z-index: -1;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .glow-button:hover::after {
+            opacity: 0.7;
+        }
+
+        .video-container {
+            aspect-ratio: 2.35 / 1;
+        }
+
+        .section-title {
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #111111;
+        }
+    </style>
+</head>
+<body class="tailwind-ready min-h-screen text-[#111111]">
+
+    <!-- HEADER / BANNER PRINCIPAL -->
+    <header class="header-banner bg-white sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between py-5">
+                
+                <!-- Logo izquierdo -->
+                <div class="flex items-center">
+                    <img src="logoweb.png" alt="Logo Accesorios Borrasca" class="h-12 w-auto drop-shadow-md">
+                </div>
+
+                <!-- Título central -->
+                <div class="flex-1 text-center px-4">
+                    <div class="inline-flex items-center gap-x-3 bg-white border-2 border-[#111111] px-8 py-3 rounded-none shadow-inner">
+                        <img src="logoweb.png" alt="Escudo" class="h-9 w-auto">
+                        <h1 class="heading-font text-3xl md:text-4xl font-semibold tracking-[3px] text-[#111111]">ACCESORIOS BORRASCA</h1>
+                        <img src="logoweb.png" alt="Escudo" class="h-9 w-auto">
+                    </div>
+                </div>
+
+                <!-- Logo derecho + Menú -->
+                <div class="flex items-center gap-x-4">
+                    <img src="logoweb.png" alt="Logo Accesorios Borrasca" class="h-12 w-auto hidden sm:block drop-shadow-md">
+                    
+                    <!-- Botón menú hamburguesa -->
+                    <button onclick="toggleSidebar()" 
+                            class="w-12 h-12 flex items-center justify-center text-4xl hover:scale-110 active:scale-95 focus:outline-none">
+                        ☰
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SIDEBAR LATERAL -->
+    <div id="sidebar" 
+         class="sidebar fixed inset-y-0 left-0 z-[100] w-80 bg-white shadow-2xl transform -translate-x-full flex flex-col">
+        
+        <div class="p-6 border-b flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <img src="logoweb.png" alt="Logo" class="h-10">
+                <span class="heading-font text-2xl font-semibold">BORRASCA</span>
+            </div>
+            <button onclick="toggleSidebar()" class="text-4xl leading-none">×</button>
+        </div>
+
+        <nav class="flex-1 px-6 py-8 space-y-2 text-lg font-medium">
+            <a onclick="openComoComprar(); toggleSidebar()" 
+               class="flex items-center gap-x-4 px-6 py-5 hover:bg-gray-100 rounded-none cursor-pointer">
+                <span class="text-2xl">🛒</span>
+                <span>Cómo Comprar</span>
+            </a>
+            
+            <a onclick="document.getElementById('seccion-repuestos').scrollIntoView({ behavior: 'smooth' }); toggleSidebar()" 
+               class="flex items-center gap-x-4 px-6 py-5 hover:bg-gray-100 rounded-none cursor-pointer">
+                <span class="text-2xl">⚙️</span>
+                <span>Ir a la tienda</span>
+            </a>
+            
+            <a onclick="contactarWhatsApp(); toggleSidebar()" 
+               class="flex items-center gap-x-4 px-6 py-5 hover:bg-gray-100 rounded-none cursor-pointer">
+                <span class="text-2xl">📱</span>
+                <span>Contacto</span>
+            </a>
+            
+            <a onclick="document.getElementById('seccion-seguinos').scrollIntoView({ behavior: 'smooth' }); toggleSidebar()" 
+               class="flex items-center gap-x-4 px-6 py-5 hover:bg-gray-100 rounded-none cursor-pointer">
+                <span class="text-2xl">🔥</span>
+                <span>Seguinos en redes</span>
+            </a>
+        </nav>
+
+        <div class="p-6 border-t text-xs text-gray-500">
+            Accesorios Borrasca © 2025/2026<br>
+            Todos los derechos reservados.
+        </div>
+    </div>
+
+    <!-- VIDEO PORTADA -->
+    <section class="relative max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div class="video-container w-full mx-auto overflow-hidden border-4 border-[#111111] shadow-2xl bg-black">
+            <video id="hero-video" 
+                   class="w-full h-full object-cover"
+                   autoplay 
+                   loop 
+                   muted 
+                   playsinline
+                   preload="metadata">
+                <source src="videoweb.mp4" type="video/mp4">
+                Tu navegador no soporta video.
+            </video>
+        </div>
+        
+        <!-- Pequeño margen visible en móvil -->
+        <div class="h-4 sm:hidden"></div>
+    </section>
+
+    <!-- TEXTO DE PRESENTACIÓN -->
+    <section class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12 content-float rounded-3xl mx-4 mt-[-20px] relative z-10">
+        <div class="text-center max-w-3xl mx-auto">
+            <h2 class="heading-font text-5xl md:text-6xl font-semibold leading-none mb-4">
+                Todo para tu moto,<br>en un solo lugar
+            </h2>
+            <p class="text-2xl md:text-3xl text-gray-700 mb-8">
+                Accesorios y repuestos de calidad al mejor precio
+            </p>
+            <p class="text-xl text-gray-600 max-w-xl mx-auto leading-relaxed">
+                Dale a tu moto el salto de nivel que se merece con repuestos y accesorios de calidad.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: REPUESTOS Y ACCESORIOS -->
+    <section id="seccion-repuestos" class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-12">
+            <div>
+                <span class="text-5xl">⚙️</span>
+                <h2 class="section-title heading-font text-4xl font-semibold inline-block ml-4">Repuestos</h2>
+            </div>
+            <p class="text-xl text-gray-600 max-w-md mt-4 md:mt-0">
+                Repuestos y accesorios para mantener tu moto siempre lista.
+            </p>
+        </div>
+
+        <!-- Cuatro productos en fila -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Producto 1 -->
+            <div onclick="openCarousel(0)" 
+                 class="card-product bg-white cursor-pointer overflow-hidden group">
+                <div class="p-3">
+                    <img src="logoweb.png" 
+                         alt="Repuesto 1" 
+                         class="w-full aspect-square object-contain border-2 border-[#111111] group-active:scale-95">
+                </div>
+                <div class="px-4 pb-4 text-center">
+                    <p class="font-medium text-sm uppercase tracking-widest">Repuesto Premium</p>
+                </div>
+            </div>
+            
+            <!-- Producto 2 -->
+            <div onclick="openCarousel(1)" 
+                 class="card-product bg-white cursor-pointer overflow-hidden group">
+                <div class="p-3">
+                    <img src="logoweb.png" 
+                         alt="Repuesto 2" 
+                         class="w-full aspect-square object-contain border-2 border-[#111111] group-active:scale-95">
+                </div>
+                <div class="px-4 pb-4 text-center">
+                    <p class="font-medium text-sm uppercase tracking-widest">Accesorio Elite</p>
+                </div>
+            </div>
+            
+            <!-- Producto 3 -->
+            <div onclick="openCarousel(2)" 
+                 class="card-product bg-white cursor-pointer overflow-hidden group">
+                <div class="p-3">
+                    <img src="logoweb.png" 
+                         alt="Repuesto 3" 
+                         class="w-full aspect-square object-contain border-2 border-[#111111] group-active:scale-95">
+                </div>
+                <div class="px-4 pb-4 text-center">
+                    <p class="font-medium text-sm uppercase tracking-widest">Motor &amp; Transmisión</p>
+                </div>
+            </div>
+            
+            <!-- Producto 4 -->
+            <div onclick="openCarousel(3)" 
+                 class="card-product bg-white cursor-pointer overflow-hidden group">
+                <div class="p-3">
+                    <img src="logoweb.png" 
+                         alt="Repuesto 4" 
+                         class="w-full aspect-square object-contain border-2 border-[#111111] group-active:scale-95">
+                </div>
+                <div class="px-4 pb-4 text-center">
+                    <p class="font-medium text-sm uppercase tracking-widest">Estilo &amp; Seguridad</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón ver más debajo de los cards -->
+        <div class="flex justify-center mt-12">
+            <button onclick="document.getElementById('seccion-repuestos').scrollIntoView({ behavior: 'smooth' })" 
+                    class="glow-button flex items-center gap-x-3 bg-[#111111] hover:bg-black text-white font-medium text-lg px-12 py-6 rounded-none border-2 border-[#111111] shadow-xl">
+                ⚙️ VER MÁS ACCESORIOS Y REPUESTOS
+            </button>
+        </div>
+    </section>
+
+    <!-- CARRUSEL MODAL -->
+    <div id="carousel-modal" onclick="if(event.target.id === 'carousel-modal') closeCarousel()" 
+         class="hidden fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4">
+        
+        <div onclick="event.stopImmediatePropagation()" 
+             class="modal-carousel bg-white max-w-4xl w-full rounded-none overflow-hidden">
+            
+            <div class="flex justify-between items-center px-6 py-4 border-b">
+                <h3 class="heading-font text-2xl font-semibold">Galería de productos</h3>
+                <button onclick="closeCarousel()" class="text-4xl leading-none">×</button>
+            </div>
+            
+            <div class="relative">
+                <!-- Imagen principal -->
+                <div class="relative aspect-video bg-black flex items-center justify-center overflow-hidden">
+                    <img id="carousel-image" 
+                         src="logoweb.png" 
+                         alt="Producto en carrusel"
+                         class="max-h-[70vh] max-w-full object-contain cursor-zoom-in hover:scale-110 transition-transform duration-300">
+                    
+                    <!-- Flechas -->
+                    <button onclick="prevSlide()" 
+                            class="absolute left-6 top-1/2 -translate-y-1/2 bg-white text-[#111111] hover:bg-[#111111] hover:text-white w-12 h-12 flex items-center justify-center text-4xl shadow-xl rounded-none">
+                        ‹
+                    </button>
+                    <button onclick="nextSlide()" 
+                            class="absolute right-6 top-1/2 -translate-y-1/2 bg-white text-[#111111] hover:bg-[#111111] hover:text-white w-12 h-12 flex items-center justify-center text-4xl shadow-xl rounded-none">
+                        ›
+                    </button>
+                </div>
+                
+                <!-- Botón Ver Catálogo dentro del carrusel -->
+                <div class="px-8 py-6 flex justify-center border-t">
+                    <button onclick="verCatalogo()" 
+                            class="bg-[#111111] text-white px-10 py-4 text-xl font-medium rounded-none flex items-center gap-x-2">
+                        Ver Catálogo
+                        <span class="text-2xl">→</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Botón ver más debajo del carrusel -->
+            <div class="px-8 pb-8">
+                <button onclick="closeCarousel(); document.getElementById('seccion-repuestos').scrollIntoView({ behavior: 'smooth' })" 
+                        class="glow-button w-full bg-[#111111] text-white py-5 text-xl font-medium flex items-center justify-center gap-x-3 rounded-none border-2 border-[#111111]">
+                    ⚙️ VER MÁS ACCESORIOS Y REPUESTOS
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 3: PARTICIPAR POR PREMIOS -->
+    <section class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gradient-to-br from-emerald-900 via-black to-emerald-950 text-white relative overflow-hidden">
+        <!-- Fondo simulando imagen de sorteosborrasca.com (reemplazar si tienes URL directa) -->
+        <div class="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] bg-[length:40px_40px] opacity-10"></div>
+        
+        <div class="relative z-10 text-center">
+            <div class="flex flex-col items-center">
+                <button onclick="openParticiparModal()" 
+                        class="inline-flex items-center gap-x-4 bg-emerald-500 hover:bg-emerald-600 text-white text-2xl font-medium px-14 py-6 rounded-none border-4 border-white shadow-2xl">
+                    <span class="text-4xl">🏍️</span>
+                    (Cómo Participar)
+                </button>
+                
+                <h2 class="heading-font text-4xl mt-10 mb-3">Participá por premios</h2>
+                <p class="text-emerald-200 max-w-md mx-auto">Obtené ofertas exclusivas y la chance de ganar tu nueva moto</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL CORTINA PARTICIPAR -->
+    <div id="modal-participar" onclick="if(event.target.id === 'modal-participar') closeParticiparModal()" 
+         class="hidden fixed inset-0 bg-black/70 z-[9999] flex items-end md:items-center justify-center">
+        
+        <div onclick="event.stopImmediatePropagation()" 
+             class="cortina bg-white text-[#111111] w-full md:w-[560px] md:rounded-3xl md:mx-4 overflow-hidden">
+            
+            <div class="px-8 py-8">
+                <h3 class="heading-font text-3xl font-semibold mb-6">Conocé más sobre cómo podés ganar tu nueva Moto</h3>
+                <p class="text-lg leading-relaxed mb-8">
+                    Obtené ofertas exclusivas y oportunidades de ganar.<br>
+                    ¡Sumate a nuestro grupo de WhatsApp y formá parte de esta oportunidad!<br>
+                    Conocé más de cómo hacerte parte de la comunidad donde.
+                </p>
+                
+                <a href="https://sorteosborrasca.com" target="_blank"
+                   class="glow-button flex items-center justify-center bg-emerald-600 text-white text-xl font-medium py-6 px-12 rounded-none w-full">
+                    Quiero Participar ⓘ
+                </a>
+            </div>
+            
+            <div class="px-8 py-6 bg-gray-100 flex justify-end">
+                <button onclick="closeParticiparModal()" class="text-sm uppercase tracking-widest font-medium">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 4: QUIÉNES SOMOS -->
+    <section class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 content-float rounded-3xl mx-4 my-8">
+        <div class="grid md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-7">
+                <h2 class="section-title heading-font text-4xl font-semibold mb-8">Simplemente, nos gustan las motos</h2>
+                <p class="text-xl leading-relaxed text-gray-700 mb-6">
+                    Nos enfocamos en mejorar tu experiencia sobre dos ruedas con productos de calidad y atención pensada para vos.
+                </p>
+                <p class="text-xl leading-relaxed text-gray-700">
+                    Somos compañeros y apasionados por las motos, con un mismo objetivo: ayudarte a elegir repuestos y accesorios que hagan rendir y ver mejor tu moto.<br><br>
+                    En ACCESORIOS BORRASCA te acompañamos en cada compra.
+                </p>
+            </div>
+            
+            <!-- Imagen centrada tipo portada -->
+            <div class="md:col-span-5 flex justify-center">
+                <img src="fondoweb.png" 
+                     alt="Accesorios Borrasca - Quiénes somos" 
+                     class="w-full max-w-[420px] aspect-[16/9] object-cover border-4 border-[#111111] shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 5: SEGUINOS -->
+    <section id="seccion-seguinos" class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-10">
+            <h2 class="section-title heading-font text-4xl font-semibold mx-auto">Sumate a nuestra comunidad</h2>
+            <p class="text-xl text-gray-600 mt-4">Seguinos en redes para no perderte nuestras ofertas.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-6">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/accesorios_borrasca/" target="_blank"
+               class="flex flex-col items-center group">
+                <div class="w-20 h-20 bg-gradient-to-br from-[#f56040] via-[#c13584] to-[#405de6] rounded-2xl flex items-center justify-center text-white text-5xl mb-3 group-active:scale-95">📸</div>
+                <span class="font-medium">Instagram</span>
+            </a>
+            
+            <!-- TikTok -->
+            <a href="#" target="_blank" onclick="alert('Próximamente TikTok de Accesorios Borrasca'); return false"
+               class="flex flex-col items-center group">
+                <div class="w-20 h-20 bg-black rounded-2xl flex items-center justify-center text-white text-5xl mb-3 group-active:scale-95">♬</div>
+                <span class="font-medium">TikTok</span>
+            </a>
+            
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/roman.borra" target="_blank"
+               class="flex flex-col items-center group">
+                <div class="w-20 h-20 bg-[#1877f2] rounded-2xl flex items-center justify-center text-white text-5xl mb-3 group-active:scale-95">𝕗</div>
+                <span class="font-medium">Facebook</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a onclick="contactarWhatsApp()" 
+       class="fixed bottom-8 right-8 z-[9999] bg-[#25D366] text-white w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shadow-2xl hover:scale-110 active:scale-95 border-4 border-white">
+        💬
+    </a>
+
+    <!-- FOOTER BANNER -->
+    <footer class="bg-white border-t-4 border-[#111111] py-8">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <!-- Enlaces rápidos -->
+            <div class="flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium">
+                <a onclick="openComoComprar()" class="hover:underline cursor-pointer">Cómo Comprar</a>
+                <a onclick="document.getElementById('seccion-repuestos').scrollIntoView({ behavior: 'smooth' })" class="hover:underline cursor-pointer">Ir a la tienda</a>
+                <a onclick="contactarWhatsApp()" class="hover:underline cursor-pointer">Contacto</a>
+                <a href="https://www.instagram.com/accesorios_borrasca/" target="_blank" class="hover:underline cursor-pointer">Seguinos en Instagram</a>
+            </div>
+            
+            <!-- Logo pequeño -->
+            <div class="flex items-center gap-x-3">
+                <img src="logoweb.png" alt="Logo pequeño" class="h-8">
+                <span class="heading-font text-xl font-semibold">Accesorios Borrasca</span>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-xs text-gray-500 text-center md:text-right">
+                Accesorios Borrasca © 2025/2026 – Todos los derechos reservados.<br>
+                <span class="text-[10px]">Diseñado con pasión para la ruta</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL CÓMO COMPRAR (CORTINA) -->
+    <div id="modal-como-comprar" onclick="if(event.target.id === 'modal-como-comprar') closeComoComprar()" 
+         class="hidden fixed inset-0 bg-black/70 z-[99999] flex items-end md:items-center justify-center p-4">
+        
+        <div onclick="event.stopImmediatePropagation()" 
+             class="cortina bg-white w-full max-w-2xl rounded-t-3xl md:rounded-3xl p-8 md:p-10">
+            
+            <h2 class="heading-font text-3xl font-semibold mb-8 text-center">Cómo Comprar</h2>
+            
+            <ol class="space-y-6 text-lg">
+                <li class="flex gap-4"><span class="font-mono text-xl font-bold text-emerald-600">01</span> Entrá al catálogo de productos.</li>
+                <li class="flex gap-4"><span class="font-mono text-xl font-bold text-emerald-600">02</span> Elegí el repuesto o accesorio que necesitás.</li>
+                <li class="flex gap-4"><span class="font-mono text-xl font-bold text-emerald-600">03</span> Hacé clic en el botón <strong>Comprar</strong>.</li>
+                <li class="flex gap-4"><span class="font-mono text-xl font-bold text-emerald-600">04</span> Realizá el pago de forma segura.</li>
+                <li class="flex gap-4"><span class="font-mono text-xl font-bold text-emerald-600">05</span> Completá tus datos en el formulario o enviáselos directamente a Román por WhatsApp.</li>
+                <li class="flex gap-4"><span class="font-mono text-xl font-bold text-emerald-600">06</span> ¡Y listo! Nosotros nos encargamos del resto.</li>
+            </ol>
+            
+            <div class="mt-10 flex justify-center">
+                <button onclick="closeComoComprar(); contactarWhatsApp()" 
+                        class="bg-[#111111] text-white px-16 py-5 rounded-none text-xl flex items-center gap-x-3">
+                    Ir directo a WhatsApp
+                    <span class="text-3xl">→</span>
+                </button>
+            </div>
+            
+            <button onclick="closeComoComprar()" 
+                    class="absolute top-6 right-6 text-4xl">×</button>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script ya cargado
+        function initializeTailwind() {
+            return {
+                config(userConfig = {}) {
+                    return {
+                        configUser: userConfig,
+                        defaultTheme: {
+                            extend: {},
+                        },
+                    }
+                },
+                theme: {
+                    extend: {},
+                },
+            }
+        }
+        
+        // Inicialización
+        function init() {
+            console.log('%c🚀 Accesorios Borrasca - Index.html cargado correctamente', 'color:#111111; font-family:Space Grotesk; font-size:13px')
+            
+            // Reproducir video automáticamente (ya tiene autoplay)
+            const video = document.getElementById('hero-video')
+            if (video) {
+                video.play().catch(() => {})
+            }
+            
+            // Cerrar sidebar al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                const sidebar = document.getElementById('sidebar')
+                if (sidebar.classList.contains('-translate-x-full') === false && 
+                    !e.target.closest('#sidebar') && 
+                    !e.target.closest('button[onclick="toggleSidebar()"]')) {
+                    toggleSidebar(true)
+                }
+            })
+        }
+        
+        // Toggle Sidebar
+        function toggleSidebar(forceClose = false) {
+            const sidebar = document.getElementById('sidebar')
+            if (forceClose || !sidebar.classList.contains('-translate-x-full')) {
+                sidebar.style.transform = 'translateX(-100%)'
+            } else {
+                sidebar.style.transform = 'translateX(0)'
+            }
+        }
+        
+        // Carrusel variables
+        let currentIndex = 0
+        const carouselImages = [
+            "logoweb.png",
+            "logoweb.png",
+            "logoweb.png",
+            "logoweb.png"
+        ]
+        
+        function openCarousel(index) {
+            currentIndex = index
+            const modal = document.getElementById('carousel-modal')
+            const img = document.getElementById('carousel-image')
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+            img.src = carouselImages[currentIndex]
+        }
+        
+        function closeCarousel() {
+            const modal = document.getElementById('carousel-modal')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+        
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + carouselImages.length) % carouselImages.length
+            document.getElementById('carousel-image').src = carouselImages[currentIndex]
+        }
+        
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % carouselImages.length
+            document.getElementById('carousel-image').src = carouselImages[currentIndex]
+        }
+        
+        function verCatalogo() {
+            closeCarousel()
+            // Simula ir al catálogo (puedes cambiar por un enlace real)
+            alert('🔥 Abriendo catálogo completo...\n\n(En producción se redirigiría a tu tienda)')
+            document.getElementById('seccion-repuestos').scrollIntoView({ behavior: 'smooth' })
+        }
+        
+        // Modal Cómo Comprar
+        function openComoComprar() {
+            const modal = document.getElementById('modal-como-comprar')
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+        }
+        
+        function closeComoComprar() {
+            const modal = document.getElementById('modal-como-comprar')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+        
+        // Modal Participar
+        function openParticiparModal() {
+            const modal = document.getElementById('modal-participar')
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+        }
+        
+        function closeParticiparModal() {
+            const modal = document.getElementById('modal-participar')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+        
+        // Contacto WhatsApp
+        function contactarWhatsApp() {
+            const phone = '+5492395418232'
+            const message = encodeURIComponent('Hola! Quiero hacer una consulta.')
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank')
+        }
+        
+        // Ejecutar todo al cargar
+        window.onload = init
+    </script>
+</body>
+</html>
